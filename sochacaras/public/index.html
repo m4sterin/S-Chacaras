@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Só Chácaras</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--Usados para o css que criamos e o do bootstrap-->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/estilo.css">
+	<!--Usados para java script da validação das informaçoes de login-->
+	<script type="text/javascript" src="js/validar_login.js"></script>
+	<!--Usados para java script do bootstrap e do jquery-->
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<!--Usados para o App Manisfest funcionar de forma correta-->
+	<link rel="manifest" href="manifest.json">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-title" content="Music Fest">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-57x57.png" sizes="57x57">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-60x60.png" sizes="60x60">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-72x72.png" sizes="72x72">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-76x76.png" sizes="76x76">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-114x114.png" sizes="114x114">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-120x120.png" sizes="120x120">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-144x144.png" sizes="144x144">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-152x152.png" sizes="152x152">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-180x180.png" sizes="180x180">
+	<meta name="msapplication-TileImage" content="/imagens/logo/app-icon-144x144.png">
+	<meta name="msapplication-TileColor" content="#fff">
+	<meta name="theme-color" content="#4b0082">
+</head>
+<body>
+	<nav id="mynavbar">
+		<div class="container-fluid">
+			<legend class="titulo"><h2>Só Chácaras</h2></legend>
+		</div>
+	</nav>
+	<section>
+		<div class="container-fluid">
+			<div class="row">
+					<div class="col-md-12">
+						<form class="formulario" action="perfil_user.html" method="post" onsubmit="return validarLogin()">
+						    <div class="inp">
+						    	<input type="email" name="user" id="usuario" placeholder="Usuário">	
+						    </div>
+						    <div class="inp">
+						    	<input type="password" name="senha" id="senhaLogin" placeholder="Senha">
+						    </div>
+						    <div class="row">
+						    	<div class="col-md-12">
+						    		<div class="btn">
+						    			<input type="checkbox" name="check" id="lembrar"> Me Lembre
+						    		</div>
+						    	</div>
+						    </div>
+						    <!--Botões de confirmação e cancelamento-->
+						    <div class="row">
+						    	<div class="col-md-12">
+						    		<div class="btn">
+						    			<button type="submit">Entrar</button>
+						    		</div> 
+						    	</div>   	
+						    </div>
+						    <div class="row">
+						    	<div class="col-md-12">
+						    		<div class="btn">
+						    			<a href="cad_user.html"><button type="button">Cadastrar</button></a>
+						    		</div>
+						    	</div>	
+						    </div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</section>
+</body>
+</html>

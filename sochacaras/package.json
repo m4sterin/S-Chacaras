@@ -1,0 +1,22 @@
+{
+  "name": "Só Chácaras",
+  "version": "1.0.0",
+  "description": "Aplicativo web para facilitar a busca por uma chácara para alugar.",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server"
+  },
+  "keywords": [
+    "pwa",
+    "progressive",
+    "web",
+    "app",
+    "chácara",
+    "alugar"
+  ],
+  "author": "Trash Makers",
+  "license": "ISC",
+  "devDependencies": {
+    "http-server": "^0.10.0"
+  }
+}
