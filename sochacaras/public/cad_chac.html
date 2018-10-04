@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Só Chácaras - Cadastro de Chácara</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<!--Inicialização do Firebase-->
+	<script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
+	<!--Componentes usados com o firebase-->
+	<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-messaging.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-functions.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-storage.js"></script>
+	<!--Chamada do java contendo as informações do firebase-->
+	<script src="js/app_firebase.js"></script>
+	
+	<!--Usados para o css que criamos e o do bootstrap-->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/estilo.css">	
+	<!--Usados para java script de validação dos dados da chacara-->
+	<script type="text/javascript" src="js/validar_cadchac.js"></script>
+	<!--Usados para java script do bootstrap e do jquery-->
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<!--Usados para o App Manisfest funcionar de forma correta-->
+	<link rel="manifest" href="manifest.json">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-title" content="Music Fest">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-57x57.png" sizes="57x57">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-60x60.png" sizes="60x60">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-72x72.png" sizes="72x72">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-76x76.png" sizes="76x76">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-114x114.png" sizes="114x114">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-120x120.png" sizes="120x120">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-144x144.png" sizes="144x144">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-152x152.png" sizes="152x152">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-180x180.png" sizes="180x180">
+	<meta name="msapplication-TileImage" content="/imagens/logo/app-icon-144x144.png">
+	<meta name="msapplication-TileColor" content="#fff">
+	<meta name="theme-color" content="#4b0082">
+</head>
+<body>
+	<!--Barra de navegação onde fica o titulo da pagina-->
+	<nav id="mynavbar">
+		<div class="container-fluid">
+			<legend class="titulo"><h2 class="cad_user">Cadastro de Chácara</h2></legend>
+		</div>
+	</nav>
+	<!--Abaixo esta o formulario para preenchimento das informações da chacara a ser cadastrada-->
+	<section>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<form class="formulario" action="index.html" method="post" onsubmit="return validar_cadchac()">	
+						<div class="inp">
+							<label>* Nome da Chácara:</label>
+							<input type="text" name="nome" id="nome_chacara" placeholder="Digite o Nome da Chácara">
+						</div>
+						<div class="inp">
+							<label>* Endereço:</label>
+							<input type="text" name="endereço" id="endereco" placeholder="Digite o Endereço">
+						</div>
+						<div class="inp">
+							<label>* CEP:</label>
+							<input type="text" name="cep" id="cep" placeholder="Digite o CEP">
+						</div>
+						<div class="inp">
+							<label>Número:</label>
+							<input type="text" name="numero" id="numerochac" placeholder="Digite o número">
+						</div>
+						<div class="inp">
+							<label>Complemento:</label>
+							<input type="text" name="complemento" id="complementochac" placeholder="Ex: Próximo a saida da cidade de Patos de Minas">
+						</div>		
+						
+						<!--Area com os checkbox indicando informações adcionais-->
+						<div class="inp">
+							<label>* Informações Adicionais</label>
+						</div>
+						<div class="inp_check">
+							<input type="checkbox" name="quarto" id="check1"> Quartos
+						</div>
+						<div class="inp_check">
+							<input type="checkbox" name="banheiro" id="check2"> Banheiros
+						</div>
+						<div class="inp_check">
+							<input type="checkbox" name="churrasqueira" id="check3"> Churrasqueira
+						</div>
+						<div class="inp_check">
+							<input type="checkbox" name="piscina" id="check4"> Piscina
+						</div>
+						<div class="inp">
+							<label>Mobiliada: </label>
+							<input type="checkbox" name="sim" id="sim"> Sim
+							<input type="checkbox" name="não" id="nao"> Não
+						</div>
+						
+						<!--Area para especificar a quantidade de quartos, banheiros, chursqueiras e piscinas na chacara-->
+						<div class="inp">
+							<label>* Quantidade de quartos:</label>
+							<input type="number" name="qtdquartos" id="qtdquartos" placeholder="0">
+						</div>
+						<div class="inp">
+							<label>* Quantidade de banheiros:</label>
+							<input type="number" name="qtdbanheiros" id="qtdbanheiros" placeholder="0">
+						</div>
+						<div class="inp">
+							<label>* Quantidade de churrasqueiras:</label>
+							<input type="number" name="qtdchurrasqueira" id="qtdchurrasqueira" placeholder="0">
+						</div>
+						<div class="inp">
+							<label>* Quantidade de piscinas:</label>
+							<input type="number" name="qtdpiscina" id="qtdpiscina" placeholder="0">
+						</div>
+						
+						<!--Area para escrever um pouco sobre a chacara-->
+						<div class="inp">
+							<textarea name="descrição" rows="10" cols="35" id="descricao">* Adicione algumas descrições</textarea>
+						</div>
+				        
+				        <!--Indicação de campos obrigatorios-->
+				        <div  class="pgf">
+				        	<p>* Campos Obrigatórios</p>
+				        </div>
+				        
+				        <!--Botão para selecionar fotos do celular e enviar para o app-->		  				
+				        <div class="row"> 
+		    				<div class="col-md-12">
+		    					<div class="btn">
+		    						<button type="button">Selecionar Fotos</button>
+		    					</div>
+		      				</div>
+		    			</div>
+				        
+				        <!--Botões de confirmação e cancelamento-->
+		  				<div class="row"> 
+		    				<div class="col-md-12">
+		    					<div class="btn">
+		    						<button type="submit">Confirmar</button>
+		    					</div>
+		      				</div>
+		    			</div>
+		  				<div class="row"> 
+		    				<div class="col-md-12">
+		    					<div class="btn">
+		    						<a href="index.html"><button type="button">Cancelar</button></a>
+		    					</div>
+		      				</div>
+		    			</div>
+					</form>
+				</div>
+			</div>
+		</div>	
+	</section>
+
+	<!--Links para os js referentes ao serice worker-->
+	<script defer src="/js/material.min.js"></script>
+	<script src="/js/promise.js"></script>
+	<script src="/js/fetch.js"></script>
+	<script src="/js/app.js"></script>
+	<script src="/js/feed.js"></script>	
+	
+</body>
+</html>
