@@ -4,6 +4,8 @@
 	<title>Só Chácaras - Cadastro de Novo Usuário</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
 	<!--Usados para o css que criamos e o do bootstrap-->
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/estilo.css">
@@ -36,76 +38,93 @@
 			<legend class="titulo"><h2 class="cad_user">Cadastro</h2></legend>
 		</div>
 	</nav>
-	<section>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-12">
-					<form class="formulario" action="index.html" method="post" onsubmit="return validarCadastro()">	
-						<div class="inp">
-							<label>* Nome Completo:</label>
-							<input type="text" name="nome" id="nome" placeholder="Digite seu Nome Completo" required>
-						</div>
-						<div class="inp">
-							<label>* CPF/CNPJ:</label>
-							<input type="text" name="CPF" id="cpf" placeholder="Digite seu CPF/CNPJ" required>
-						</div>
-						<div class="inp">
-							<label>* E-mail:</label>
-							<input type="email" name="E-mail" id="email1" placeholder="Digite seu E-mail" required>
-						</div>
-						<div class="inp">
-							<label>* Confirmar E-mail:</label>
-							<input type="email" name="E-mail" id="email2" placeholder="Confirme seu E-mail" required>
-						</div>
-						<div class="inp">
-								<label>Profissão:</label>
-								<input type="text" name="profis" id="profissao" placeholder="Sua Profissão">
-						</div>
-						<div class="inp">
-							<label>* Cidade:</label>
-							<select name="Cidade">
-								<option>Patos De Minas</option>
-								<option>Presidente Olegário</option>
-								<option>Uberlândia</option>
-								<option>Uberaba</option>
-							</select>
-						</div>
-						<div class="inp">
-							<label>* Estado:</label>
-							<select name="Estado">
-								<option>Minas Gerais</option>
-								<option>São Paulo</option>
-								<option>Manaus</option>
-								<option>Goiás</option>
-							</select>
-						</div>
-						<div class="inp">
-							<label>* Senha:</label>
-							<input type="password" name="Senha" id="senha1" placeholder="Digite a Senha" required>
-						</div>
-						<div class="inp">
-							<label>* Confirmar Senha:</label>
-							<input type="password" name="ConfirmarSenha" id="senha2" placeholder="Digite a Senha Novamente" required>
-						</div>
-				        <!--Botões de confirmação e cancelamento-->
-		  				<div class="row"> 
-		    				<div class="col-md-12">
-		    					<div class="btn">
-		    						<button type="submit">Confirmar Cadastro</button>
-		    					</div>
-		      				</div>
-		    			</div>
-		  				<div class="row"> 
-		    				<div class="col-md-12">
-		    					<div class="btn">
-		    						<a href="index.html"><button type="button">Cancelar Cadastro</button></a>
-		    					</div>
-		      				</div>
-		    			</div>
-					</form>
-				</div>
-			</div>
-		</div>	
-	</section>	
+	<section class="formulario">
+		<ul id="usersList"></ul>
+		<hr>
+		<div class="col-md-12">
+		    <form>
+		    	<div class="inp">
+		    		<label for="nome">* Nome Completo:</label>
+		    		<input type="text" name="nome" id="nome" placeholder="Digite seu Nome Completo" required>
+		    	</div>
+		    	<div class="inp">
+		    		<label for="cpf">* CPF/CNPJ:</label>
+		    		<input type="text" name="CPF" id="cpf" placeholder="Digite seu CPF/CNPJ" required>
+		    	</div>
+		    	<div class="inp">
+		   			<label for="email1">* E-mail:</label>
+	 				<input type="email" name="E-mail" id="email1" placeholder="Digite seu E-mail" required>
+	   			</div>
+		    	<div class="inp">
+		    		<label for="email2">* Confirmar E-mail:</label>
+		    		<input type="email" name="E-mail" id="email2" placeholder="Confirme seu E-mail" required>
+		    	</div>
+		    	<div class="inp">
+		    		<label for="profissao">Profissão:</label>
+		    		<input type="text" name="profis" id="profissao" placeholder="Sua Profissão">
+		    	</div>
+		    	<div class="inp">
+		    		<label for="cidade">* Cidade:</label>
+		    		<select name="Cidade" id="cidade">
+		    			<option>Patos De Minas</option>
+		    			<option>Presidente Olegário</option>
+		    			<option>Uberlândia</option>
+		    			<option>Uberaba</option>
+		    		</select>
+		    	</div>
+		    	<div class="inp">
+		    		<label for="estado">* Estado:</label>
+		    		<select name="Estado"  id="estado">
+		    			<option>Minas Gerais</option>
+		    			<option>São Paulo</option>
+		    			<option>Manaus</option>
+		    			<option>Goiás</option>
+		    		</select>
+		    	</div>
+		    	<div class="inp">
+		    		<label for="senha1">* Senha:</label>
+		    		<input type="password" name="Senha" id="senha1" placeholder="Digite a Senha" required>
+		    	</div>
+		    	<div class="inp">
+		    		<label for="senha2">* Confirmar Senha:</label>
+		    		<input type="password" name="ConfirmarSenha" id="senha2" placeholder="Digite a Senha Novamente" required>
+		    	</div>
+		    	        
+		    	<!--Indicação de campos obrigatorios-->
+		    	<div  class="pgf">
+		    	    <p>* Campos Obrigatórios</p>
+		    	</div>
+
+		    	<!--Botões de confirmação e cancelamento-->
+		    	<div class="row">
+		    		<div class="col-md-12">
+		    			<div class="btn">
+		    				<button type="button" id="addButton">Confirmar Cadastro</button>
+		    			</div>		    		
+		    		</div>		    	
+		    	</div> 
+		    	<div class="row">
+		    		<div class="col-md-12">
+		    			<div class="btn">
+		    				<a href="index.html"><button type="button">Cancelar Cadastro</button></a>
+		    			</div>		    		
+		    		</div>		    	
+		    	</div>
+		    </form>
+		</div>
+	</section>
+
+	<!--Inicialização do Firebase-->
+	<script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
+	<script src="js/app_firebase.js"></script>
+	<script src="js/real-time-database.js"></script>
+
+	<!--Links para os js referentes ao serice worker-->
+	<script defer src="/js/material.min.js"></script>
+	<script src="/js/promise.js"></script>
+	<script src="/js/fetch.js"></script>
+	<script src="/js/app.js"></script>
+	<script src="/js/feed.js"></script>	
+	
 </body>
 </html>
