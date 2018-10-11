@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Só Chácaras - Alterar Dados de Usuário</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<!--Inicialização do Firebase-->
+	<script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
+	<!--Componentes usados com o firebase-->
+	<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-messaging.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-functions.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-storage.js"></script>
+	<!--Chamada do java contendo as informações do firebase-->
+	<script src="js/app_firebase.js"></script>
+
+	<!--Usados para o css que criamos e o do bootstrap-->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/estilo.css">
+	<!--Usados para java script de validação dos dados do usuario-->
+	<script type="text/javascript" src="js/validar_alteracao.js"></script>
+	<!--Usados para java script do bootstrap e do jquery-->
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<!--Usados para o App Manisfest funcionar de forma correta-->
+	<link rel="manifest" href="manifest.json">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-title" content="Music Fest">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-57x57.png" sizes="57x57">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-60x60.png" sizes="60x60">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-72x72.png" sizes="72x72">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-76x76.png" sizes="76x76">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-114x114.png" sizes="114x114">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-120x120.png" sizes="120x120">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-144x144.png" sizes="144x144">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-152x152.png" sizes="152x152">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-180x180.png" sizes="180x180">
+	<meta name="msapplication-TileImage" content="/imagens/logo/app-icon-144x144.png">
+	<meta name="msapplication-TileColor" content="#fff">
+	<meta name="theme-color" content="#4b0082">
+</head>
+<body>
+	<nav id="mynavbar">
+		<div class="container-fluid">
+			<legend class="titulo"><h2>Alterar Dados Pessoais</h2></legend>
+		</div>
+	</nav>
+	<section>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<form class="formulario" action="perfil_user.html" method="post" onsubmit="return alterarCadastro()">	
+						<div class="inp">
+							<label>Editar Nome:</label>
+							<input type="text" name="nome" id="novoNome" placeholder="Digite seu Nome Completo">
+						</div>
+						<div class="inp">
+							<label>Editar CPF/CNPJ:</label>
+							<input type="text" name="CPF" id="novoCPF" placeholder="Digite seu CPF/CNPJ">
+						</div>
+						<div class="inp">
+							<label>Alterar E-mail:</label>
+							<input type="email" name="E-mail" id="novoEmail1" placeholder="Digite seu E-mail">
+						</div>
+						<div class="inp">
+							<label>Confirmar Novo E-mail:</label>
+							<input type="email" name="E-mail" id="novoEmail2" placeholder="Confirme seu E-mail">
+						</div>
+						<div class="inp">
+								<label>Alterar Profissão:</label>
+								<input type="text" name="profissao" id="novaProfissao" placeholder="Sua Profissão">
+						</div>
+						<div class="inp">
+							<label>Alterar Cidade:</label>
+							<select name="Cidade">
+								<option>Patos De Minas</option>
+								<option>Presidente Olegário</option>
+								<option>Uberlândia</option>
+								<option>Uberaba</option>
+							</select>
+						</div>
+						<div class="inp">
+							<label>Alterar Estado:</label>
+							<select name="Estado">
+								<option>Minas Gerais</option>
+								<option>São Paulo</option>
+								<option>Manaus</option>
+								<option>Goiás</option>
+							</select>
+						</div>
+						<div class="inp">
+							<label>Senha Atual:</label>
+							<input type="password" name="Senha" id="senha1" placeholder="Digite a Senha Atual">
+						</div>
+						<div class="inp">
+							<label>Senha Nova:</label>
+							<input type="password" name="ConfirmarSenha" id="novaSenha1" placeholder="Digite a Senha Nova">
+						</div>
+						<div class="inp">
+							<label>Senha Nova:</label>
+							<input type="password" name="ConfirmarSenha" id="novaSenha2" placeholder="Repita a Senha Nova">
+						</div>
+						
+						<!--Indicação de campos obrigatorios-->
+						<div  class="pgf">
+							<p>* Campos Obrigatórios</p>
+						</div>
+
+				        <!--Botões de confirmação e cancelamento-->
+		  				<div class="row"> 
+		    				<div class="col-md-12">
+		    					<div class="btn">
+		    						<button type="submit">Confirmar Dados</button>
+		    					</div>
+		      				</div>
+		    			</div>
+		  				<div class="row"> 
+		    				<div class="col-md-12">
+		    					<div class="btn">
+		    						<a href="perfil_user.html"><button type="button">Cancelar Alterações</button></a>
+		    					</div>
+		      				</div>
+		    			</div>
+					</form>
+				</div>
+			</div>
+		</div>	
+	</section>
+
+	<!--Links para os js referentes ao serice worker-->
+	<script defer src="/js/material.min.js"></script>
+	<script src="/js/promise.js"></script>
+	<script src="/js/fetch.js"></script>
+	<script src="/js/app.js"></script>
+	<script src="/js/feed.js"></script>	
+	
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Só Chácaras - Cadastro de Novo Usuário</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Web App para aluguel de Chácaras">
+    <meta name="author" content="TrashMakers">
+
+    <!-- CSS mais recente compilado e minimizado do bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Tema opcional mas é bom deixa-lo pois está em uso -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+     
+    <!-- Nosso css contendo os estilos aplicados em nosso projeto -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Navbar criado usando o bootstrap -->
+    <nav class="navbar navbar-inverse navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="login.html">Só Chácaras</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Criar Sua Conta</h3>
+                <form>
+                    <div>
+                        <label for="emailInput">* E-mail:</label>
+                        <input type="email" id="emailInput" placeholder="Informe seu E-mail">
+                    </div>
+                    <div>
+                        <label for="email2Input">* Confirmar E-mail:</label>
+                        <input type="email" id="email2Input" placeholder="Digite novamente seu E-mail">
+                    </div>
+                    <div>
+                        <label for="senhaInput">* Senha</label>
+                        <input type="password" id="senhaInput" placeholder="Informe uma Senha">
+                    </div>            
+                    <div>
+                        <label for="password2Input">* Confirmar Senha</label>
+                        <input type="password" id="senha2Input" placeholder="Digite novamente a Senha">
+                    </div>
+                    <div>
+                        <p>* Campos obrigatórios</p>
+                    </div>
+                </form>
+
+                <button id="createUserButton">Criar Nova Conta</button>
+
+                <a href="login.html"><button type="button">Cancelar Cadastro</button></a>
+            </div>           
+        </div>
+    </div>
+
+    <!-- Inicialização do Firebase-->
+    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+    <script src="js/app_firebase.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    
+    <!-- Bootstrap core JavaScript-->
+    <!-- Colocado no final do documento para que as páginas sejam carregadas mais rapidamente -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    
+    <!-- Último JavaScript compilado e minimizado do bootstrap-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    
+    <!-- Nosso javascript contendo o metodo de login e cadastro de usuario-->
+    <script src="js/cad_user.js"></script>
+</body>
+</html>
