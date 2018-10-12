@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Só Chácaras - Sobre-nós</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Web App para aluguel de Chácaras">
+        <meta name="author" content="TrashMakers">
+        
+        <!-- CSS mais recente compilado e minimizado do bootstrap-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+        <!-- Tema opcional mas é bom deixa-lo pois está em uso -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+        
+        <!-- Nosso css contendo os estilos aplicados em nosso projeto -->
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+
+    <body>
+        <!-- Navbar criado usando o bootstrap -->
+        <nav class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="index.html">Só Chácaras</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="perfil_user.html">Meu Perfil</a></li>
+                <li><a href="cad_chac.html">Cadastrar Chácara</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li class="active"><a href="sobre_app.html">Conheça-nos</a></li>
+                <li><a href="#"><button id="logOutButton">Sair</button></a></li>
+              </ul>
+            </div>
+          </div>
+        </nav> 
+
+       <!--Abaixo serão colocadas as informações sobre o grupo-->
+       <div class="container">
+            <div class="row">
+                <div class="col-med-12">
+                    <h1>Sobre o Só Chácaras</h1>
+                    <h2>Nosso App</h2>
+                        <p>Nosso App Web foi criado para resolver os problemas encontrados ao precisar alugar uma chácara, como por exemplo, lidar com a casualidade de ter que conseguir uma do seu agrado em um determinado tempo, que às vezes, pode até ser alugado às pressas resultando em uma  escolha não tão satisfatível devido a vários motivos como: ter que escolher em um curto período de tempo que vai ser alugado um espaço, até conseguir um que atenda a necessidade do momento; ter que utilizar meios que até possam ser chamados de retrógrados, como procurar uma chácara nos jornais ou perguntar para conhecidos; se procuramos o termo ‘Chácara’ na AppStore, não encontramos nada relacionado a locação.</p>
+                    <h2>Nossa Missão</h2>
+                        <p>Temos o intuito de lidar com a casualidade com o nosso App Web, para facilitar a procura de uma chácara por parte do usuário, assim, podendo em um curto período de tempo analisar várias chácaras e escolher a que atender melhor sua necessidade, contando com as funcionalidades que oferecemos para melhor atender o usuário, por exemplo: sistema de filtro, sistema de avaliação das chácaras com informações cruciais para escolher o imóvel certo, como a quantidade de quartos, piscina, churrasqueira, banheiros, etc.</p>
+                    <h2>Nossa Equipe</h2>
+                        <p>O Só Chácaras foi criado pela equipe da Trash Makers, formada por alunos do Curso de Sistemas de Informação do Centro Universitário de Patos de Minas - UNIPAM.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Inicialização do Firebase-->      
+        <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+        <script src="js/app_firebase.js"></script>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        
+        <!-- Bootstrap core JavaScript-->
+        <!-- Colocado no final do documento para que as páginas sejam carregadas mais rapidamente -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+        
+        <!-- Último JavaScript compilado e minimizado do bootstrap-->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+        
+        <!-- Nosso javascript contendo o metodo de logout-->
+        <script src="js/logout.js"></script>
+    </body>
+</html>

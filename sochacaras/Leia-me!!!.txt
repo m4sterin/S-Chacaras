@@ -1,0 +1,4 @@
+E-mail do firebase: sochacaras2018@gmail.com
+Senha: projetopi2018
+
+Quando acessar o firebase abra o projeto "so chacaras", pois é ele que está em nosso app.

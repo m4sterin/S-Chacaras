@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Só Chácaras - FAQ</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<!--Inicialização do Firebase-->
+	<script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
+	<!--Componentes usados com o firebase-->
+	<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-messaging.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-functions.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-storage.js"></script>
+	<!--Chamada do java contendo as informações do firebase-->
+	<script src="js/app_firebase.js"></script>
+
+	<!--Usados para o css que criamos e o do bootstrap-->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/estilo.css">
+	<!--Usados para java script do bootstrap e do jquery-->
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<!--Usados para o App Manisfest funcionar de forma correta-->
+	<link rel="manifest" href="manifest.json">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-title" content="Music Fest">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-57x57.png" sizes="57x57">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-60x60.png" sizes="60x60">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-72x72.png" sizes="72x72">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-76x76.png" sizes="76x76">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-114x114.png" sizes="114x114">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-120x120.png" sizes="120x120">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-144x144.png" sizes="144x144">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-152x152.png" sizes="152x152">
+	<link rel="apple-touch-icon" href="/imagens/logo/apple-icon-180x180.png" sizes="180x180">
+	<meta name="msapplication-TileImage" content="/imagens/logo/app-icon-144x144.png">
+	<meta name="msapplication-TileColor" content="#fff">
+	<meta name="theme-color" content="#4b0082">
+</head>
+<body>
+	<!--Barra de menu da pagina contendo as opções: Perfil, Chácaras para Alugar, Cadastro de Chácaras, Alterar Informações pessoais, Dúvidas, Conheça-nos e Sair-->
+	<!--Foi utiliada propriedades do bootstrap para criação da navbar-->
+	<div class="pos-f-t">
+		<div class="collapse" id="navbarToggleExternalContent">
+		   	<div class="bg-dark p-4 menu">
+		    	<ul class="menu">
+		    	<li><a href="perfil_user.html">Meu Perfil</a></li>
+		    	<li><a href="index.html">Encontrar Chácara</a></li>
+		    	<li><a href="cad_chac.html">Cadastrar Chácara</a></li>
+		    	<li><a href="alterar_cad_user.html">Alterar Dados Pessoais</a></li>
+		    	<li><a href="help.html">Dúvidas</a></li>
+		    	<li><a href="sobre.html">Conheça-nos</a></li>
+		    	<li><a href="login.html">Sair</a></li>
+		    	</ul>
+		    </div>
+		</div>
+		<nav class="navbar navbar-dark bg-dark">
+		    <div class="navbar-header">
+		    	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+		    		<span class="navbar-toggler-icon"></span>
+		    	</button>
+		    	<a class="navbar-brand" href="#">Só Chácaras</a>
+			</div>
+		  </nav>
+	</div>
+
+	<!--Abaixo serão colocadas as informações de ajuda, peguntas mais frequentes, aos usuarios-->
+	<section>
+		<div>
+			<div>
+				<h1>Como podemos lhe ajudar?</h1>
+				<legend>Perguntas mais frequentes</legend>
+				<ol>
+					<li>Como anunciar chácaras?</li>
+						<p>O anuncio de chácaras pode ser feito por meio da opção "Cadastrar Chácara", no menu, ou pelo botão de atalho "+"na tela inicial.</p>
+					<li>Como subir fotos para a minha chácara?</li>
+						<p>Para subir fotos de sua chácara, durante o cadastro, selecione a opção "Adicionar Fotos" e escolhas as que preferir, elas aparecerão na página de sua chácara.</p>
+					<li>Posso alterar meu nome de perfil e senha?</li>
+						<P>Sim voçê pode. Para isso é preciso clicar na opção do menu Alterar Dados Pessoais. Nessa tela você pode também alterar seus outros dados.</P>
+					<li>Esqueci minha senha, e agora?</li>
+						<p>Basta clicar no botão "Não lembro minha senha", na tela de login, e realizar os passos necessários para a definição de sua nova senha</p>
+					<li>Como faço o pagamento?</li>
+						<p>O pagamento é realizado na efetivação do cadastro de sua chácara, é cobrado apenas uma pequena taxa para manter o anuncio de sua chácara em nosso App Web.</p>
+					<li>Como coloco foto no meu perfil?</li>
+						<p>Na página de seu perfil clique na sua foto atual, em seguida, escolha uma de sua galeria ou tire uma nova foto na hora.</p>
+					<li>O que é o sistema de avaliação?</li>
+						<p>Em nosso App Web voçê pode avaliar as chácaras que alugou e as pessoas com quem fechou negócio, dando a eles de 1 a 5 estrelas, sendo que 1 é a nota de avaliação mais baixa e 5 é a nota mais alta.</p>
+					<li>Como faço meu cadastro?</li>
+						<p>Em nossa página inicial clique no botão "Cadastrar" para ser redirecionado a uma nova página, onde deverá preencher os campos solicitados, e após checar se preencheu todos os dados corretamente, clicar em "Confirmar Cadastro" </p>
+					<li>Posso fazer Login com o Facebook e o Google?</li>
+						<p>Sim você pode logar com Facebook ou com o Google, mas após deve preencher alguns dados solicitados.</p>
+					<li>Como funciona o filtro de pesquisa?</li>
+						<p>As chácaras anunciadas em nosso App Web, são classificadas por distância média, entre o endereço do usuário e o endereço da chácara, niveis de avaliação (1 a 5 estrelas) e preços. Voçê pode escolher os parametros que desejar que o filtro de pesquisa irá lhe retornar as chácaras que encaixam nas escolhas.</p>
+				</ol>
+				<h2>Ainda possui dúvidas?</h2>
+				<p>Nos mande uma mensagem com sua dúvida que responderemos o mais breve possível.</p>
+			</div>
+		</div>
+	</section>
+
+	<!--Links para os js referentes ao serice worker-->
+	<script defer src="/js/material.min.js"></script>
+	<script src="/js/promise.js"></script>
+	<script src="/js/fetch.js"></script>
+	<script src="/js/app.js"></script>
+	<script src="/js/feed.js"></script>	
+	
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Só Chácaras - Meus Dados</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Web App para aluguel de Chácaras">
+        <meta name="author" content="TrashMakers">
+
+        <!-- CSS mais recente compilado e minimizado do bootstrap-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+        <!-- Tema opcional mas é bom deixa-lo pois está em uso -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+         
+        <!-- Nosso css contendo os estilos aplicados em nosso projeto -->
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+
+    <body>
+        <!-- Navbar criado usando o bootstrap -->
+        <nav class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="login.html">Só Chácaras</a>
+            </div>
+          </div>
+        </nav>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Complete seu Cadastro inserindo as seguintes informações</h1>
+                    <div>
+                        <p>Dados que serão exibidos na Tela de Perfil</p>
+                    </div>
+                    <div>
+                        <label for="nomeInput">Nome:</label>
+                        <input type="text" id="nomeInput" placeholder="Nome">
+                    </div>
+                    <div>
+                        <label for="idadeInput">Idade:</label>
+                        <input type="number" id="idadeInput" placeholder="Idade">
+                    </div>
+                    <div>
+                        <label for="profissaoInput">Profissão / Ocupação:</label>
+                        <input type="text" id="profissaoInput" placeholder="Nome">
+                    </div>
+                    <div>
+                        <label for="cidadeInput">Cidade:</label>
+                        <input type="text" id="cidadeInput" placeholder="Nome">
+                    </div>
+                    <div>
+                        <label for="estadoInput">Estado:</label>
+                         <input type="text" id="estadoInput" placeholder="Nome">
+                    </div>
+                    <div>
+                        <label class="myLabel" id="inputLabel">
+                            <input type="file" id="upload" required/>
+                            <span>Selecione uma Foto</span>
+                        </label>
+                    </div>
+                    
+                    <button type="button" class="btn btn-primary upload-group" onclick="saveUser()">Redefinir Dados</button>
+                    
+                    <a href="index.html"><button type="button" class="btn btn-primary upload-group">Cancelar</button></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inicialização do Firebase-->
+        <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+        <script src="js/app_firebase.js"></script>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        
+        <!-- Bootstrap core JavaScript-->
+        <!-- Colocado no final do documento para que as páginas sejam carregadas mais rapidamente -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+        
+        <!-- Último JavaScript compilado e minimizado do bootstrap-->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+        
+        <!-- Nosso javascript contendo o metodo de login e cadastro de usuario-->
+        <script src="js/dados_user.js"></script>
+    </body>
+</html>

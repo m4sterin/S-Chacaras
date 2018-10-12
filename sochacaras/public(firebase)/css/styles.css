@@ -1,0 +1,21 @@
+/*Definindo tamanho da imagem do logo do web app*/
+.appLogo {
+	width: 40%;
+}
+/*Alinhamento dos itens na pagina index centralmente*/
+.row{
+	text-align: center;
+}
+
+#inputLabel {
+	overflow: hidden;
+	max-height: 40px;
+	background-image: linear-gradient(to bottom,#337ab7 0,#265a88 100%); 
+	padding: 10px 10px 10px 10px;
+	color: white;
+}
+
+#inputLabel > input {
+	position: fixed;
+	top: -1000px;
+}

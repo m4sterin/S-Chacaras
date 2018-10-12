@@ -1,0 +1,112 @@
+/*trecho usado na pagina de Login e na pagina de Cadastro de usuario*/
+#mynavbar{
+    background-color: indigo; /*define a cor do background da navbar*/
+}
+.formulario{
+    padding: 15px 0px 15px 0px; /*Configura os espaçamentos do formulario e o alinhamento do seu conteudo*/
+    text-align: center;
+}
+.inp{
+    padding: 05px 05px 05px 05px; /*Configura os espaçamentos entre os inputs e o seu alinhamento*/
+    text-align: center;
+}
+.inp_check{
+    padding: 05px 05px 05px 05px; /*Configura os espaçamentos entre os inputs e o seu alinhamento*/
+    text-align: left;
+}
+div.btn{
+    padding: 10px 10px 10px 10px; /*Configura os espaçamentos dos botões e o seu alinhamento*/
+    vertical-align: center;
+}
+button{
+    background-color: indigo; /*Altera a cor de fundo e do texto dos botões*/
+    color: white;
+}
+.titulo{
+	text-align: center;
+    padding: 5px 5px 5px 5px; /*Configura os epaçamentos, alinhamento e cor do titulo da barra de navegação*/
+    color: white;
+}
+.container{
+    margin-top:90px;
+}
+input[type=text]{
+    width: 100%;  /*mudar o tamanho das caixas*/
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type=email]{
+    width: 100%;  /*mudar o tamanho das caixas*/
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type=password]{ 
+    width: 100%;   /*mudar o tamanho das caixas*/
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+select{
+    width: 100%;  /*mudar o tamanho das caixas*/
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.pgf{
+    text-align: right;  /*texto indicando os locais de preenchimento obrigatorio*/
+}
+/*trecho usado na pagina de cadastro de usuario*/
+
+/*Trecho usado para a barra de navegação*/
+.menu{
+    list-style-type: none; /*tira as marcações padrões da tag de lista não ordenada*/
+}
+.menu > li{
+    padding: 0px 0px 15px 0px; /*aumenta o espaço inferior para cada item da lista*/
+}
+.menu > ul > li > a{
+    color: white;         /* muda a cor e o formato padrão dos links*/
+    text-decoration: none;
+}
+.menu > ul > li > a:hover{
+    text-decoration: none;  /*muda a cor quando o mouse está por cima do link*/
+    color: yellow;
+}
+.navbar{
+    background-color: #4b0082 !important; /*muda a cor padrão do background do bootstrap para a cor que desejarmos*/
+}
+.bg-dark{
+    background-color: #4b0082 !important; /*muda a cor padrão do background do bootstrap para a cor que desejarmos*/
+}
+/*Trecho usado para a barra de navegação*/
+
+/*Trecho utilizado na tela de perfil do usuario*/
+.perfil{
+    text-align: center;
+}
+/*Trecho utilizado na tela de perfil do usuario*/
+
+/*Trecho utilizado na tela de cadastro de chácaras*/
+input[type=number]{ 
+    width: 18%;   
+    padding: 12px 20px;
+    margin: 8px 0;               /*mudar o tamanho das caixas*/
+    display: inline;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
