@@ -16,6 +16,24 @@
         
         <!-- Nosso css contendo os estilos aplicados em nosso projeto -->
         <link rel="stylesheet" href="css/styles.css">
+
+        <!--Usados para o App Manisfest funcionar de forma correta mesmo em dispositovos antigos-->
+        <link rel="manifest" href="manifest.json">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-title" content="SChácaras">
+        <link rel="apple-touch-icon" href="/imagens/logo/apple-icon-57x57.png" sizes="57x57">
+        <link rel="apple-touch-icon" href="/imagens/logo/apple-icon-60x60.png" sizes="60x60">
+        <link rel="apple-touch-icon" href="/imagens/logo/apple-icon-72x72.png" sizes="72x72">
+        <link rel="apple-touch-icon" href="/imagens/logo/apple-icon-76x76.png" sizes="76x76">
+        <link rel="apple-touch-icon" href="/imagens/logo/apple-icon-114x114.png" sizes="114x114">
+        <link rel="apple-touch-icon" href="/imagens/logo/apple-icon-120x120.png" sizes="120x120">
+        <link rel="apple-touch-icon" href="/imagens/logo/apple-icon-144x144.png" sizes="144x144">
+        <link rel="apple-touch-icon" href="/imagens/logo/apple-icon-152x152.png" sizes="152x152">
+        <link rel="apple-touch-icon" href="/imagens/logo/apple-icon-180x180.png" sizes="180x180">
+        <meta name="msapplication-TileImage" content="/imagens/logo/app-icon-144x144.png">
+        <meta name="msapplication-TileColor" content="#fff">
+        <meta name="theme-color" content="#4b0082">
     </head>
 
     <body>
@@ -94,5 +112,11 @@
         
         <!-- Nosso javascript contendo o metodo de logout-->
         <script src="js/logout.js"></script>
+
+        <!--Links para os js referentes ao funcionamento do serice worker-->
+        <script src="/js/promise.js"></script>
+        <script src="/js/fetch.js"></script>
+        <script src="/js/app.js"></script>
+        
     </body>
 </html>
