@@ -2,6 +2,7 @@
 .appLogo {
 	width: 40%;
 }
+
 /*Alinhamento dos itens na pagina index centralmente*/
 .row{
 	text-align: center;
@@ -18,4 +19,14 @@
 #inputLabel > input {
 	position: fixed;
 	top: -1000px;
+}
+
+/*Trecho usado para a barra de navegação
+#navbar{
+    background-color: #4b0082 !important;
+}*/
+
+#logOutButton{
+	background: none;
+	border-color: none;
 }
