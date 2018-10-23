@@ -29,3 +29,5 @@ rootRef.on("child_added", snap =>{
 		+ complemento + "</div><div> Cidade:" + cidade + "</div><div> Estado:" + estado + 
 		"</div><div> Proprietário:" + dono + "</div></div><br>");
 });
+
+//Gabriel queima rosquinha todo dia
