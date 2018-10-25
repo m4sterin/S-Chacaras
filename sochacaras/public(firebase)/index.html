@@ -62,12 +62,25 @@
           </div>
         </nav>
 
-        <h1>Bem vindo ao Só Chácaras</h1>
-
-        <!-- Area com as informações da chácara-->
         <section>
-            <div id="chacarasDisplay"></div>
+            <h2 class="textIndex">Bem vindo ao Só Chácaras</h2>
+            <h3 class="textIndex">Aqui voçê encontra a Chácara de seus sonhos!!!</h3>
+            
+            <!-- Area onde ficam as chacaras disponiveis para aluguel-->
+            <div class="container" id="chacarasDisplay"></div>
+
+            <!-- Area onde ficara informaçoes completas da chacara selecionada pelo usuario (tela de visualização de informação da chacara)-->
+            <div class="container" id="contentChac"></div>
         </section>
+
+        <!--Link para redirecionar a pagina de cadastro de chacara-->
+        <div class="container">
+            <div class="row">
+                <div>
+                    <a href="cad_chac.html" class="float"><i class="fa fa-plus my-float"></i></a>    
+                </div>
+            </div>
+        </div>
 
         <!-- Inicialização do Firebase-->
         <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
