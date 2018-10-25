@@ -39,7 +39,7 @@
   <body>
       <!-- Navbar criado usando o bootstrap -->
       <nav class="navbar navbar-inverse navbar-static-top">
-        <div class="container">
+        <div id="mynavbar" class="container-fluid">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
               <span class="sr-only">Toggle navigation</span>
@@ -127,6 +127,11 @@
               <div class="col-lg-12 input-group upload-group">
                 <label>Quantidade de Quartos *</label>
                 <input type="text" placeholder="0" id="chacQuartos">
+              </div>
+              <!-- Local de preenchimento informando a quantidade de camas-->
+              <div class="col-lg-12 input-group upload-group">
+                <label>Quantidade de Camas *</label>
+                <input type="text" placeholder="0" id="chacCamas">
               </div>
               <!-- Local de preenchimento informando a quantidade de banheiros-->
               <div class="col-lg-12 input-group upload-group">

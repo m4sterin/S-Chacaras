@@ -45,6 +45,7 @@ function uploadFile() {
 			Cidade: $("#chacCity").val(),
 			Estado: $("#chacEstate").val(),
 			Quartos: $("#chacQuartos").val(),
+			Camas: $("#chacCamas").val(),
 			Banheiros: $("#chacBanheiros").val(),
 			Churrasqueiras: $("#chacChurrasqueiras").val(),
 			Piscinas: $("#chacPiscinas").val(),

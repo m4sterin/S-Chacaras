@@ -1,14 +1,72 @@
+/*CSS criado pelos alunos e que contem os estilos de cada pagina do Web App Só Chácaras*/
+
+/*Trecho do css usado no estilo da navbar*/
+#mynavbar{ /*mynavbar é o id usado para a barra de navegação das paginas*/
+    background-color: #4b0082 !important; /*muda a cor padrão do background do bootstrap para a cor que desejarmos*/
+}
+#logOutButton{ /*logOutButton é o id usado no botão que realiza o logout do usuario que esta atualmente logado*/             
+	background: #4b0082; /*Definindo o estilo do botão de logout presente na navbar*/
+	border-color: #4b0082;
+}
+
+/*Trecho do css que define o estilo da pagina que contem as imagens das chacaras disponiveis*/
+.textIndex{ /*tituloIndex é a classe usada para o titulo da pagina que atualmente é - Bem Vindo ao Só Chácaras -*/
+	text-align: center;  /*Alinhando o titulo da pagina no centro*/
+}
+.contentImage{ /*contentImage é a classe usada para a imagem de cada chácara cadastrada no banco de dados*/      
+	width: 100%; /*Definindo o espaçamento de uma imagem a outra e o tamanho que ela deve ocupar na coluna*/
+	padding: 10px 10px 10px 10px;
+}
+.contentInfo{ /*contentInfo é a classe usada para o texto contendo as informações de cada chácara cadastrada*/          
+	width: 100%; /*Definindo o tamanho da fonte, o alinhamento e o espaço que deve ocupar pelas informações da Chácara*/
+	font-size: 1em;
+	text-align: left;
+	padding: 5px 10px 0px 10px;
+}
+.contentBtn{ /*contentBtn é a classe usada para os botões criados, que irão redirecionar a pagina que contem as informações da chacara*/
+	width: 100%; /*Definindo estilo para o novo botão criado para cada chacara mostrada na pagina*/
+	padding: 5px 5px 5px 5px;
+}
+.contentStars{ /*contentStars é a classe usada na div que contem as estrelas de avaliação das chácaras*/
+	text-align: left; /*Definindo estilo para a div que contem a avaliação de cada chacara mostrada na pagina*/
+	padding: 5px 5px 10px 5px;
+}
+
+/*Trecho usado para adicionar estilo ao icone da pagina index que redireciona para a pagina de cadastro de chacaras*/
+.float{ /*float é a classe usada para o link referente ao botão que redireciona para a pagina de cadastro de chacara*/
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:#4b0082;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+}
+.my-float{ /*my-float é a classe usada para definir o espaçamento da margem do icone na pagina*/
+	margin-top:22px;
+}
+
+/*Trecho usado para mudar a cor do background e da borda dos botoes presentes em todas as paginas*/
+.btn-primary{
+	background-color: #4b0082 !important;
+	border-color: #4b0082 !important; 
+	background-image: none !important;
+}
+
 /*Definindo tamanho da imagem do logo do web app*/
-.appLogo {
+.appLogo { /*appLogo é a classe utilizada para a tag de imagem que contem o logo do App*/
 	width: 40%;
 }
 
-/*Alinhamento dos itens na pagina index centralmente*/
-.row{
+/*Alinhamento dos itens nas paginas centralmente*/
+.row{ /**/
 	text-align: center;
 }
 
-#inputLabel {
+#inputLabel { /**/
 	overflow: hidden;
 	max-height: 40px;
 	background-image: linear-gradient(to bottom,#337ab7 0,#265a88 100%); 
@@ -16,17 +74,7 @@
 	color: white;
 }
 
-#inputLabel > input {
+#inputLabel > input { /**/
 	position: fixed;
 	top: -1000px;
-}
-
-/*Trecho usado para a barra de navegação
-#navbar{
-    background-color: #4b0082 !important;
-}*/
-
-#logOutButton{
-	background: none;
-	border-color: none;
 }

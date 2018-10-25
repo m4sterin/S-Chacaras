@@ -17,7 +17,7 @@ function userAuth() {
 }
 
 // Autenticar com E-mail e Senha
-function login() {
+function logIn() {
   // Campos de preenchimento de e-mail e senha
   var emailInput = document.getElementById('emailInput');
   var passwordInput = document.getElementById('senhaInput');
