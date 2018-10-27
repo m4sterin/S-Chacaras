@@ -100,5 +100,43 @@
 	padding: 10px 10px 10px 10px;
 	display: inline-block;
 }
+
+
+/*Trecho usado para modificar os campos de preenchimento na seção de Cadastro de Chácara e definir outros estilos*/
+input[type=text]{  /*mudar o tamanho das caixas*/
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type=number]{  /*mudar o tamanho das caixas*/
+    width: auto;   
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+#inputLabel { /*Editando aparencia do botão de */
+	overflow: hidden;
+	max-height: 40px;
+	background-color: #4b0082 !important;
+	border-color: #4b0082 !important;
+	border-image: none !important;
+	padding: 10px 10px 10px 10px;
+	color: white;
+}
+#inputLabel > input { /**/
+	position: fixed;
+	top: -1000px;
+}
+.myLabel{
+	text-align: center;
+	padding-bottom: 10px;
+}
 }
 
