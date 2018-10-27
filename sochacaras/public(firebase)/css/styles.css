@@ -20,3 +20,28 @@
 	background-color: #4b0082 !important;
 	border-color: #4b0082 !important;
 }
+
+
+/*Trecho do css que define o estilo da pagina que contem as imagens das chacaras disponiveis*/
+.textIndex{ /*tituloIndex é a classe usada para o titulo da pagina que atualmente é - Bem Vindo ao Só Chácaras -*/
+	text-align: center;  /*Alinhando o titulo da pagina no centro*/
+}
+.contentImage{ /*contentImage é a classe usada para a imagem de cada chácara cadastrada no banco de dados*/      
+	width: 100%; /*Definindo o espaçamento de uma imagem a outra e o tamanho que ela deve ocupar na coluna*/
+	padding: 10px 10px 10px 10px;
+}
+.contentInfo{ /*contentInfo é a classe usada para o texto contendo as informações de cada chácara cadastrada*/          
+	width: 100%; /*Definindo o tamanho da fonte, o alinhamento e o espaço que deve ocupar pelas informações da Chácara*/
+	font-size: 1em;
+	text-align: left;
+	padding: 5px 10px 0px 10px;
+}
+.contentBtn{ /*contentBtn é a classe usada para os botões criados, que irão redirecionar a pagina que contem as informações da chacara*/
+	width: 100%; /*Definindo estilo para o novo botão criado para cada chacara mostrada na pagina*/
+	padding: 5px 5px 5px 5px;
+}
+.contentStars{ /*contentStars é a classe usada na div que contem as estrelas de avaliação das chácaras*/
+	text-align: left; /*Definindo estilo para a div que contem a avaliação de cada chacara mostrada na pagina*/
+	padding: 5px 5px 10px 5px;
+}
+
