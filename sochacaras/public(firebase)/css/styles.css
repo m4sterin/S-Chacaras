@@ -45,3 +45,27 @@
 	padding: 5px 5px 10px 5px;
 }
 
+/*Trecho usado para adicionar estilo ao icone da pagina index que redireciona para a pagina de cadastro de chacaras*/
+.float{ /*float é a classe usada para o link referente ao botão que redireciona para a pagina de cadastro de chacara*/
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:#4b0082;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+}
+.my-float{ /*my-float é a classe usada para definir o espaçamento da margem do icone na pagina*/
+	text-align: center;
+}
+
+/*Trecho usado para mudar a cor do background e da borda dos botoes presentes em todas as paginas*/
+.btn-primary{
+	background-color: #4b0082 !important;
+	border-color: #4b0082 !important; 
+	background-image: none !important;
+}
+
