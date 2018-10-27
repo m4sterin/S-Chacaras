@@ -1,4 +1,4 @@
-﻿/*CSS criado pelos alunos e que contem os estilos de cada pagina do Web App Só Chácaras*/
+/*CSS criado pelos alunos e que contem os estilos de cada pagina do Web App Só Chácaras*/
 
 /*Trecho do css usado no estilo da navbar*/
 #myNavbar{ /*mynavbar é o id usado para a barra de navegação das paginas*/
@@ -20,7 +20,6 @@
 	background-color: #4b0082 !important;
 	border-color: #4b0082 !important;
 }
-
 
 /*Trecho do css que define o estilo da pagina que contem as imagens das chacaras disponiveis*/
 .textIndex{ /*tituloIndex é a classe usada para o titulo da pagina que atualmente é - Bem Vindo ao Só Chácaras -*/
@@ -67,6 +66,7 @@
 	background-color: #4b0082 !important;
 	border-color: #4b0082 !important; 
 	background-image: none !important;
+}
 
 /*Trecho para definir o tamanho da foto do usuario na tela de perfil*/
 .userFoto{
@@ -100,7 +100,6 @@
 	padding: 10px 10px 10px 10px;
 	display: inline-block;
 }
-
 
 /*Trecho usado para modificar os campos de preenchimento na seção de Cadastro de Chácara e definir outros estilos*/
 input[type=text]{  /*mudar o tamanho das caixas*/
@@ -138,5 +137,3 @@ input[type=number]{  /*mudar o tamanho das caixas*/
 	text-align: center;
 	padding-bottom: 10px;
 }
-}
-
