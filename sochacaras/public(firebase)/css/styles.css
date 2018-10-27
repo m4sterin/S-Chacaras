@@ -67,5 +67,38 @@
 	background-color: #4b0082 !important;
 	border-color: #4b0082 !important; 
 	background-image: none !important;
+
+/*Trecho para definir o tamanho da foto do usuario na tela de perfil*/
+.userFoto{
+	width: 40%;
+	border-radius: 50%;
+}
+
+/*Definindo tamanho da imagem do logo do web app*/
+.appLogo { /*appLogo é a classe utilizada para a tag de imagem que contem o logo do App*/
+	width: 100%;
+	padding-bottom: 15px;
+}
+
+/*Alinhamento dos itens das seções centralmente*/
+.secaoLogin{ /*Alinhamento dos itens na seção de Login*/
+	text-align: center;
+}
+.secaoUserInfo{ /*Alinhamento dos itens na seção de Perfil do Usuario*/
+	text-align: center;
+}
+.secaoFAQ > div >  ol > li > p{ /*Alinhamento dos itens na seção de FAQ*/
+	text-align: justify;
+}
+.secaoSobreApp > div > p{ /*Alinhamento dos itens na seção de Informações sobre o app*/
+	text-align: justify;
+}
+.secaoCadChacBtn{ /*Alinhamento dos botões na seção de Cadastro de Chácara*/
+	text-align: center;	
+}
+.secaoCadChacBtn .secaoCadChacBtn01{ /*Espaçamento dos botóes na seção de Cadastro de Chácara*/
+	padding: 10px 10px 10px 10px;
+	display: inline-block;
+}
 }
 
