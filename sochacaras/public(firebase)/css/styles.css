@@ -1,30 +1,42 @@
 /*CSS criado pelos alunos e que contem os estilos de cada pagina do Web App Só Chácaras*/
 
-/*Trecho do css usado no estilo da navbar*/
+/*Trecho usado para a barra de navegação do bootstrap*/
+.menu{
+    list-style-type: none; /*tira as marcações padrões da tag de lista não ordenada*/
+}
+.menu > li{
+    padding: 0px 0px 15px 0px; /*aumenta o espaço inferior para cada item da lista*/
+}
+.menu > ul > li > a{
+    color: white;         /* muda a cor e o formato padrão dos links*/
+    text-decoration: none;
+}
+.menu > ul > li > a:hover{
+    text-decoration: none;  /*muda a cor quando o mouse está por cima do link*/
+    color: yellow;
+}
+.linkHome{
+	padding: 10px 10px 10px 10px;
+}
+.navbar{
+    background-color: #4b0082 !important; /*muda a cor padrão do background do bootstrap para a cor que desejarmos*/
+}
+.bg-dark{
+    background-color: #4b0082 !important; /*muda a cor padrão do background do bootstrap para a cor que desejarmos*/
+}
+
+/*Trecho do css usado no estilo da navbar (sem bootstrap)*/
 #myNavbar{ /*mynavbar é o id usado para a barra de navegação das paginas*/
     background-color: #4b0082 !important; /*muda a cor padrão do background do bootstrap para a cor que desejarmos*/
-}
-.myNavbar{ /*mynavbar é o id usado para a barra de navegação das paginas*/
-    background-color: #4b0082 !important; /*muda a cor padrão do background do bootstrap para a cor que desejarmos*/
-}
-.navBtn{ /*logOutButton é o id usado no botão que realiza o logout do usuario que esta atualmente logado*/             
-	background: #4b0082; /*Definindo o estilo do botão de logout presente na navbar*/
-	border-color: #4b0082;
+    padding: 10px 10px 10px 10px;
 }
 .tituloNav{
 	text-align: left;
     padding: 5px 5px 5px 5px; /*Configura os epaçamentos, alinhamento e cor do titulo da barra de navegação*/
     color: white;
 }
-#collapseBtn{ /*Mudando a cor do botão collapse da navbar*/
-	background-color: #4b0082 !important;
-	border-color: #4b0082 !important;
-}
 
 /*Trecho do css que define o estilo da pagina que contem as imagens das chacaras disponiveis*/
-.textIndex{ /*tituloIndex é a classe usada para o titulo da pagina que atualmente é - Bem Vindo ao Só Chácaras -*/
-	text-align: center;  /*Alinhando o titulo da pagina no centro*/
-}
 .contentImage{ /*contentImage é a classe usada para a imagem de cada chácara cadastrada no banco de dados*/      
 	width: 100%; /*Definindo o espaçamento de uma imagem a outra e o tamanho que ela deve ocupar na coluna*/
 	padding: 10px 10px 10px 10px;
@@ -42,6 +54,9 @@
 .contentStars{ /*contentStars é a classe usada na div que contem as estrelas de avaliação das chácaras*/
 	text-align: left; /*Definindo estilo para a div que contem a avaliação de cada chacara mostrada na pagina*/
 	padding: 5px 5px 10px 5px;
+}
+.chacDiv{
+	padding-bottom: 15px;
 }
 
 /*Trecho usado para adicionar estilo ao icone da pagina index que redireciona para a pagina de cadastro de chacaras*/
@@ -84,14 +99,29 @@
 .secaoLogin{ /*Alinhamento dos itens na seção de Login*/
 	text-align: center;
 }
+.logoDiv{
+	padding-top: 20px;
+}
 .secaoUserInfo{ /*Alinhamento dos itens na seção de Perfil do Usuario*/
+	padding-top: 20px;
 	text-align: center;
 }
 .secaoFAQ > div >  ol > li > p{ /*Alinhamento dos itens na seção de FAQ*/
 	text-align: justify;
 }
+.textFAQ{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
 .secaoSobreApp > div > p{ /*Alinhamento dos itens na seção de Informações sobre o app*/
 	text-align: justify;
+}
+.textSobreApp{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.secaoCadChac{
+	padding-top: 20px;
 }
 .secaoCadChacBtn{ /*Alinhamento dos botões na seção de Cadastro de Chácara*/
 	text-align: center;	
@@ -112,7 +142,7 @@ input[type=text]{  /*mudar o tamanho das caixas*/
     box-sizing: border-box;
 }
 input[type=number]{  /*mudar o tamanho das caixas*/
-    width: auto;   
+    width: 50%;   
     padding: 12px 20px;
     margin: 8px 0;
     display: inline;
@@ -126,8 +156,8 @@ input[type=number]{  /*mudar o tamanho das caixas*/
 	background-color: #4b0082 !important;
 	border-color: #4b0082 !important;
 	border-image: none !important;
-	padding: 10px 10px 10px 10px;
 	color: white;
+	text-align: center;
 }
 #inputLabel > input { /**/
 	position: fixed;

@@ -9,7 +9,9 @@ var faqBtn = document.getElementById('faqBtn');
 var sobreAppBtn = document.getElementById('sobreAppBtn');
 var addBtn = document.getElementById('addBtn');
 var cadChacBtn = document.getElementById('cadChacBtn');
+var cadChacVIPbtn = document.getElementById('cadChacVIPbtn');
 var cancelarCad = document.getElementById('cancelarCad');
+var cancelarCadVIP = document.getElementById('cancelarCadVIP');
 var logOutButton = document.getElementById('logOutButton');
 
 $(document).ready(function(){
@@ -21,6 +23,7 @@ $(document).ready(function(){
 	$("#secIndex").hide();
 	$("#secChacInfo").hide();
 	$("#secCadChac").hide();
+	$("#secCadChacVIP").hide();
 	$("#secFAQ").hide();
 	$("#secSobreApp").hide();
 	$("#cadBtn").hide();
@@ -94,6 +97,7 @@ function showPerfilContainer() {
 	$("#secIndex").hide();
 	$("#secChacInfo").hide();
 	$("#secCadChac").hide();
+	$("#secCadChacVIP").hide();
 	$("#secFAQ").hide();
 	$("#secSobreApp").hide();
 	$("#cadBtn").show();
@@ -110,6 +114,7 @@ linkBtn.addEventListener('click', function () {
 	$("#secIndex").show();
 	$("#secChacInfo").hide();
 	$("#secCadChac").hide();
+	$("#secCadChacVIP").hide();
 	$("#secFAQ").hide();
 	$("#secSobreApp").hide();
 	$("#cadBtn").show();
@@ -124,6 +129,7 @@ homeBtn.addEventListener('click', function () {
 	$("#secIndex").show();
 	$("#secChacInfo").hide();
 	$("#secCadChac").hide();
+	$("#secCadChacVIP").hide();
 	$("#secFAQ").hide();
 	$("#secSobreApp").hide();
 	$("#cadBtn").show();
@@ -143,6 +149,7 @@ faqBtn.addEventListener('click', function () {
 	$("#secIndex").hide();
 	$("#secChacInfo").hide();
 	$("#secCadChac").hide();
+	$("#secCadChacVIP").hide();
 	$("#secFAQ").show();
 	$("#secSobreApp").hide();
 	$("#cadBtn").show();
@@ -157,6 +164,7 @@ sobreAppBtn.addEventListener('click', function () {
 	$("#secIndex").hide();
 	$("#secChacInfo").hide();
 	$("#secCadChac").hide();
+	$("#secCadChacVIP").hide();
 	$("#secFAQ").hide();
 	$("#secSobreApp").show();
 	$("#cadBtn").show();
@@ -171,6 +179,7 @@ addBtn.addEventListener('click', function () {
 	$("#secIndex").hide();
 	$("#secChacInfo").hide();
 	$("#secCadChac").show();
+	$("#secCadChacVIP").hide();
 	$("#secFAQ").hide();
 	$("#secSobreApp").hide();
 	$("#cadBtn").hide();
@@ -185,6 +194,24 @@ cadChacBtn.addEventListener('click', function () {
 	$("#secIndex").hide();
 	$("#secChacInfo").hide();
 	$("#secCadChac").show();
+	$("#secCadChacVIP").hide();
+	$("#secFAQ").hide();
+	$("#secSobreApp").hide();
+	$("#cadBtn").hide();
+});
+
+//Função para realizar o cadastro VIP da Chácara
+cadChacVIPbtn.addEventListener('click', function () {
+	$("#myNavbar").show();
+	$("#bootNavbar").hide();
+	$("#secLogin").hide();
+	$("#secUserInfo").hide();
+	$("#secIndex").hide();
+	$("#secChacInfo").hide();
+	$("#secCadChac").show();
+	$("#secCadChacVIP").show();
+	$("#cadChadBtns").hide();
+	$("#cadChadVIPBtns").show();
 	$("#secFAQ").hide();
 	$("#secSobreApp").hide();
 	$("#cadBtn").hide();
@@ -199,10 +226,33 @@ cancelarCad.addEventListener('click', function () {
 	$("#secIndex").show();
 	$("#secChacInfo").hide();
 	$("#secCadChac").hide();
+	$("#secCadChacVIP").hide();
 	$("#secFAQ").hide();
 	$("#secSobreApp").hide();
 	$("#cadBtn").show();
 });
+
+//Função para cancelar o cadastro da chacara VIP caso o usuario mude de ideia
+cancelarCadVIP.addEventListener('click', function () {
+	$("#cadChadBtns").show();
+	$("#cadChadVIPBtns").hide();
+
+});
+
+//Função para quando o cadastro da Chácara for completo
+function completeCadChac(){
+	$("#myNavbar").hide();
+	$("#bootNavbar").show();
+	$("#secLogin").hide();
+	$("#secUserInfo").hide();
+	$("#secIndex").show();
+	$("#secChacInfo").hide();
+	$("#secCadChac").hide();
+	$("#secCadChacVIP").hide();
+	$("#secFAQ").hide();
+	$("#secSobreApp").hide();
+	$("#cadBtn").show();
+}
 
 //Função do botão sair para realizar o logout do usuario
 logOutButton.addEventListener('click', function () {
@@ -268,6 +318,7 @@ function uploadFile() {
 		//Apos salvar os dados o formulario de preenchimento é ocultado e 
 		//é exibida uma mensagem de confirmação
 		alert("Dados salvos com sucesso!!!");
+		completeCadChac();
 	});
 }
 
@@ -290,6 +341,7 @@ function queryDatabase(){
 			$(col).addClass("col-md-4");
 			var col2 = document.createElement("div");
 			$(col2).addClass("col-md-8");
+			$(col2).addClass("chacDiv");
 			var stars = document.createElement("div");
 			$(stars).addClass("contentStars");
 			
