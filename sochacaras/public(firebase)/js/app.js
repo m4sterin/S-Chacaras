@@ -10,7 +10,7 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker
     .register('/sw.js')
     .then(function () {
-      console.log('Service worker registrado!');
+      console.log('Service worker registered!');
     })
     .catch(function(err) {
       console.log(err);
@@ -19,7 +19,7 @@ if ('serviceWorker' in navigator) {
 
 //Exibe banner de instalação do web app
 window.addEventListener('beforeinstallprompt', function(e) {
-  console.log('beforeinstallprompt Evento iniciado');
+  console.log('beforeinstallprompt Event fired');
   e.preventDefault();
 
   // Esconde o evento para que ele possa ser acionado mais tarde
@@ -40,10 +40,10 @@ btnSave.addEventListener('click', function() {
       console.log(choiceResult.outcome);
 
       if(choiceResult.outcome == 'dismissed') {
-        console.log('Instalação da tela inicial cancelada pelo usuário!!!');
+        console.log('User cancelled home screen install');
       }
       else {
-        console.log('Usuário adicionou atalho à tela inicial!!!');
+        console.log('User added to home screen');
       }
 
       // Nós não precisamos mais do prompt. Limpar tudo.

@@ -1,32 +1,211 @@
-/*Definindo tamanho da imagem do logo do web app*/
-.appLogo {
-	width: 40%;
+/*CSS criado pelos alunos e que contem os estilos de cada pagina do Web App Só Chácaras*/
+
+/*Trecho usado para a barra de navegação do bootstrap*/
+.menu{
+    list-style-type: none; /*tira as marcações padrões da tag de lista não ordenada*/
+}
+.menu > li{
+    padding: 0px 0px 15px 0px; /*aumenta o espaço inferior para cada item da lista*/
+}
+.menu > ul > li > a{
+    color: white;         /* muda a cor e o formato padrão dos links*/
+    text-decoration: none;
+}
+.menu > ul > li > a:hover{
+    text-decoration: none;  /*muda a cor quando o mouse está por cima do link*/
+    color: yellow;
+}
+.linkHome{
+	padding: 10px 10px 10px 10px;
+}
+.navbar{
+    background-color: #4b0082 !important; /*muda a cor padrão do background do bootstrap para a cor que desejarmos*/
+}
+.bg-dark{
+    background-color: #4b0082 !important; /*muda a cor padrão do background do bootstrap para a cor que desejarmos*/
 }
 
-/*Alinhamento dos itens na pagina index centralmente*/
-.row{
+/*Trecho do css usado no estilo da navbar (sem bootstrap)*/
+#myNavbar{ /*mynavbar é o id usado para a barra de navegação das paginas*/
+    background-color: #4b0082 !important; /*muda a cor padrão do background do bootstrap para a cor que desejarmos*/
+    padding: 10px 10px 10px 10px;
+}
+.tituloNav{
+	text-align: left;
+    padding: 5px 5px 5px 5px; /*Configura os epaçamentos, alinhamento e cor do titulo da barra de navegação*/
+    color: white;
+}
+
+/*Trecho do css que define o estilo da pagina que contem as imagens das chacaras disponiveis*/
+.contentImage{ /*contentImage é a classe usada para a imagem de cada chácara cadastrada no banco de dados*/      
+	width: 100%; /*Definindo o espaçamento de uma imagem a outra e o tamanho que ela deve ocupar na coluna*/
+	padding: 10px 10px 10px 10px;
+}
+.contentInfo{ /*contentInfo é a classe usada para o texto contendo as informações de cada chácara cadastrada*/          
+	width: 100%; /*Definindo o tamanho da fonte, o alinhamento e o espaço que deve ocupar pelas informações da Chácara*/
+	font-size: 1em;
+	text-align: left;
+	padding: 5px 10px 0px 10px;
+}
+.contentInfo2{
+	width: 100%; /*Definindo o tamanho da fonte, o alinhamento e o espaço que deve ocupar pelas informações da Chácara*/
+	font-size: 1em;
+	text-align: left;
+	padding: 5px 10px 0px 10px;
+	display: inline;
+}
+.contentBtn{ /*contentBtn é a classe usada para os botões criados, que irão redirecionar a pagina que contem as informações da chacara*/
+	width: 100%; /*Definindo estilo para o novo botão criado para cada chacara mostrada na pagina*/
+	padding: 5px 5px 5px 5px;
+}
+.contentStars{ /*contentStars é a classe usada na div que contem as estrelas de avaliação das chácaras*/
+	text-align: left; /*Definindo estilo para a div que contem a avaliação de cada chacara mostrada na pagina*/
+	padding: 5px 5px 10px 5px;
+}
+.btnChac{
+	text-align: center;
+	padding: 5px 5px 10px 5px;
+}
+.chacDiv1{
+	padding-bottom: 15px;
+}
+.chacBtn{
+	display: block;
+}
+.userFotoChacPage{
+	width: 20%;
+	border-radius: 50%;
+}
+
+/*Trecho usado para adicionar estilo ao icone da pagina index que redireciona para a pagina de cadastro de chacaras*/
+.float{ /*float é a classe usada para o link referente ao botão que redireciona para a pagina de cadastro de chacara*/
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:#4b0082;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+}
+.my-float{ /*my-float é a classe usada para definir o espaçamento da margem do icone na pagina*/
 	text-align: center;
 }
 
-#inputLabel {
-	overflow: hidden;
-	max-height: 40px;
-	background-image: linear-gradient(to bottom,#337ab7 0,#265a88 100%); 
-	padding: 10px 10px 10px 10px;
-	color: white;
+/*Trecho usado para mudar a cor do background e da borda dos botoes presentes em todas as paginas*/
+.btn-primary{
+	background-color: #4b0082 !important;
+	border-color: #4b0082 !important; 
+	background-image: none !important;
 }
 
-#inputLabel > input {
+/*Trecho para definir o tamanho da foto do usuario na tela de perfil*/
+.userFoto{
+	width: 40%;
+	border-radius: 50%;
+}
+
+/*Definindo tamanho da imagem do logo do web app*/
+.appLogo { /*appLogo é a classe utilizada para a tag de imagem que contem o logo do App*/
+	width: 100%;
+	padding-bottom: 15px;
+}
+
+/*Alinhamento dos itens das seções centralmente*/
+.secaoLogin{ /*Alinhamento dos itens na seção de Login*/
+	text-align: center;
+}
+.logoDiv{
+	padding-top: 20px;
+}
+.secaoUserInfo{ /*Alinhamento dos itens na seção de Perfil do Usuario*/
+	padding-top: 20px;
+	text-align: center;
+}
+.secaoFAQ > div >  ol > li > p{ /*Alinhamento dos itens na seção de FAQ*/
+	text-align: justify;
+}
+.textFAQ{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.secaoSobreApp > div > p{ /*Alinhamento dos itens na seção de Informações sobre o app*/
+	text-align: justify;
+}
+.textSobreApp{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.secaoCadChac{
+	padding-top: 20px;
+}
+.secaoCadChacBtn{ /*Alinhamento dos botões na seção de Cadastro de Chácara*/
+	text-align: center;	
+}
+.secaoCadChacBtn .secaoCadChacBtn01{ /*Espaçamento dos botóes na seção de Cadastro de Chácara*/
+	padding: 10px 10px 10px 10px;
+	display: inline-block;
+}
+
+/*Trecho usado para modificar os campos de preenchimento na seção de Cadastro de Chácara e definir outros estilos*/
+input[type=text]{  /*mudar o tamanho das caixas*/
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type=number]{  /*mudar o tamanho das caixas*/
+    width: 50%;   
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+#inputLabel { /*Editando aparencia do botão de */
+	overflow: hidden;
+	max-height: 40px;
+	background-color: #4b0082 !important;
+	border-color: #4b0082 !important;
+	border-image: none !important;
+	color: white;
+	text-align: center;
+}
+#inputLabel > input { /**/
 	position: fixed;
 	top: -1000px;
 }
+.myLabel{
+	text-align: center;
+	padding-bottom: 10px;
+}
 
-/*Trecho usado para a barra de navegação
-#navbar{
-    background-color: #4b0082 !important;
-}*/
 
-#logOutButton{
-	background: none;
-	border-color: none;
+/*Trecho contendo os estilos para os botões colapsaveis que mostram as infomrações das chácaras na pagina inicial*/
+.collapsible {
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
 }

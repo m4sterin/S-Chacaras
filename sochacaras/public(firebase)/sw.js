@@ -1,16 +1,20 @@
 var CACHE_STATIC_NAME = 'static-v15';
 var CACHE_DYNAMIC_NAME = 'dynamic-v2';
 var STATIC_FILES = [
-	'/',
-  '/login.html',
-  '/js/app.js',
-  '/js/promise.js',
-  '/js/fetch.js',
-  '/css/styles.css',
+  '/',
+    '/index.html',
+    '/js/app.js',
+    '/js/promisse.js',
+    '/js/fetch.js',
+    '/js/my_script.js',
+    '/css/styles.css',
+    '/imagens/logo.png',
+    '/imagens/star0.png',
+    '/imagens/star1.png',
 ];
 
 self.addEventListener('install', function (event) {
-  console.log('[Service Worker] Instalando o Service Worker...', event);
+  console.log('[Service Worker] Installing Service Worker ...', event);
   event.waitUntil(
     caches.open(CACHE_STATIC_NAME)
       .then(function (cache) {
@@ -21,13 +25,13 @@ self.addEventListener('install', function (event) {
 });
 
 self.addEventListener('activate', function (event) {
-  console.log('[Service Worker] Ativando o Service Worker....', event);
+  console.log('[Service Worker] Activating Service Worker ....', event);
   event.waitUntil(
     caches.keys()
       .then(function (keyList) {
         return Promise.all(keyList.map(function (key) {
           if (key !== CACHE_STATIC_NAME && key !== CACHE_DYNAMIC_NAME) {
-            console.log('[Service Worker] Removendo cache antigo...', key);
+            console.log('[Service Worker] Removing old cache.', key);
             return caches.delete(key);
           }
         }));
