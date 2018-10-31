@@ -8,8 +8,6 @@ var perfilBtn = document.getElementById('perfilBtn');
 var faqBtn = document.getElementById('faqBtn');
 var sobreAppBtn = document.getElementById('sobreAppBtn');
 var addBtn = document.getElementById('addBtn');
-var cadChacBtn = document.getElementById('cadChacBtn');
-var cadChacVIPbtn = document.getElementById('cadChacVIPbtn');
 var cancelarCad = document.getElementById('cancelarCad');
 var cancelarCadVIP = document.getElementById('cancelarCadVIP');
 var logOutButton = document.getElementById('logOutButton');
@@ -23,7 +21,6 @@ $(document).ready(function(){
 	$("#secIndex").hide();
 	$("#secChacInfo").hide();
 	$("#secCadChac").hide();
-	$("#secCadChacVIP").hide();
 	$("#secFAQ").hide();
 	$("#secSobreApp").hide();
 	$("#cadBtn").hide();
@@ -97,7 +94,6 @@ function showPerfilContainer() {
 	$("#secIndex").hide();
 	$("#secChacInfo").hide();
 	$("#secCadChac").hide();
-	$("#secCadChacVIP").hide();
 	$("#secFAQ").hide();
 	$("#secSobreApp").hide();
 	$("#cadBtn").show();
@@ -114,7 +110,6 @@ linkBtn.addEventListener('click', function () {
 	$("#secIndex").show();
 	$("#secChacInfo").hide();
 	$("#secCadChac").hide();
-	$("#secCadChacVIP").hide();
 	$("#secFAQ").hide();
 	$("#secSobreApp").hide();
 	$("#cadBtn").show();
@@ -129,7 +124,6 @@ homeBtn.addEventListener('click', function () {
 	$("#secIndex").show();
 	$("#secChacInfo").hide();
 	$("#secCadChac").hide();
-	$("#secCadChacVIP").hide();
 	$("#secFAQ").hide();
 	$("#secSobreApp").hide();
 	$("#cadBtn").show();
@@ -149,7 +143,6 @@ faqBtn.addEventListener('click', function () {
 	$("#secIndex").hide();
 	$("#secChacInfo").hide();
 	$("#secCadChac").hide();
-	$("#secCadChacVIP").hide();
 	$("#secFAQ").show();
 	$("#secSobreApp").hide();
 	$("#cadBtn").show();
@@ -164,7 +157,6 @@ sobreAppBtn.addEventListener('click', function () {
 	$("#secIndex").hide();
 	$("#secChacInfo").hide();
 	$("#secCadChac").hide();
-	$("#secCadChacVIP").hide();
 	$("#secFAQ").hide();
 	$("#secSobreApp").show();
 	$("#cadBtn").show();
@@ -179,7 +171,6 @@ addBtn.addEventListener('click', function () {
 	$("#secIndex").hide();
 	$("#secChacInfo").hide();
 	$("#secCadChac").show();
-	$("#secCadChacVIP").hide();
 	$("#secFAQ").hide();
 	$("#secSobreApp").hide();
 	$("#cadBtn").hide();
@@ -194,24 +185,6 @@ cadChacBtn.addEventListener('click', function () {
 	$("#secIndex").hide();
 	$("#secChacInfo").hide();
 	$("#secCadChac").show();
-	$("#secCadChacVIP").hide();
-	$("#secFAQ").hide();
-	$("#secSobreApp").hide();
-	$("#cadBtn").hide();
-});
-
-//Função para realizar o cadastro VIP da Chácara
-cadChacVIPbtn.addEventListener('click', function () {
-	$("#myNavbar").show();
-	$("#bootNavbar").hide();
-	$("#secLogin").hide();
-	$("#secUserInfo").hide();
-	$("#secIndex").hide();
-	$("#secChacInfo").hide();
-	$("#secCadChac").show();
-	$("#secCadChacVIP").show();
-	$("#cadChadBtns").hide();
-	$("#cadChadVIPBtns").show();
 	$("#secFAQ").hide();
 	$("#secSobreApp").hide();
 	$("#cadBtn").hide();
@@ -226,17 +199,9 @@ cancelarCad.addEventListener('click', function () {
 	$("#secIndex").show();
 	$("#secChacInfo").hide();
 	$("#secCadChac").hide();
-	$("#secCadChacVIP").hide();
 	$("#secFAQ").hide();
 	$("#secSobreApp").hide();
 	$("#cadBtn").show();
-});
-
-//Função para cancelar o cadastro da chacara VIP caso o usuario mude de ideia
-cancelarCadVIP.addEventListener('click', function () {
-	$("#cadChadBtns").show();
-	$("#cadChadVIPBtns").hide();
-
 });
 
 //Função para quando o cadastro da Chácara for completo
@@ -248,7 +213,6 @@ function completeCadChac(){
 	$("#secIndex").show();
 	$("#secChacInfo").hide();
 	$("#secCadChac").hide();
-	$("#secCadChacVIP").hide();
 	$("#secFAQ").hide();
 	$("#secSobreApp").hide();
 	$("#cadBtn").show();
@@ -309,15 +273,16 @@ function uploadFile() {
 			Churrasqueiras: $("#chacChurrasqueiras").val(),
 			Piscinas: $("#chacPiscinas").val(),
 			Descricao: $("#chacDescricao").val(),
+			totalEstrelas: 0,
+			mediaEstrelas: 0,
+			qtdVotos: 0,
 			userID: user.uid,
 			userName: user.displayName,
 			userFotoURL: user.photoURL
 		};
 		updates['/Chacaras/' + postKey] = postData;
 		firebase.database().ref().update(updates);
-		//Apos salvar os dados o formulario de preenchimento é ocultado e 
-		//é exibida uma mensagem de confirmação
-		alert("Dados salvos com sucesso!!!");
+		//Apos salvar os dados o formulario de preenchimento é ocultado
 		completeCadChac();
 	});
 }
@@ -337,13 +302,26 @@ function queryDatabase(){
 				$("#chacarasDisplay").append(currentRow);
 			}
 			//Criando colunas com a tag div e adicionando a classe col-md-4 (para a imagem) e col-md-8 (para texto).
-			var col = document.createElement("div");
-			$(col).addClass("col-md-4");
+			var col1 = document.createElement("div");
+			$(col1).addClass("col-md-4");
+			
 			var col2 = document.createElement("div");
 			$(col2).addClass("col-md-8");
 			$(col2).addClass("chacDiv");
+			
+			//Criando div's para que possam ser colocados alguns itens dentro delas
 			var stars = document.createElement("div");
 			$(stars).addClass("contentStars");
+
+			var btnChac = document.createElement("div");
+			$(btnChac).addClass("btnChac");
+			
+			var chacDiv1 = document.createElement("div");
+			$(chacDiv1).addClass("chacDiv1");
+			
+			var chacDiv2 = document.createElement("div");
+			$(chacDiv2).addClass("chacDiv2");
+			$(chacDiv2).addClass("content");
 			
 			//Criando o elemento da imagem e definindo seu src pelo url da imagem salva pelo usuario no banco de dados
 			var chacImage = document.createElement("img");
@@ -355,44 +333,205 @@ function queryDatabase(){
 			$(chacNome).addClass("contentInfo");
 			$(chacNome).html(currentObject.Nome);
 
+			var chacNome2 = document.createElement("p");
+			$(chacNome2).addClass("contentInfo");
+			$(chacNome2).html('Nome: ' +  currentObject.Nome);
+
 			var chacEnd = document.createElement("p");
 			$(chacEnd).addClass("contentInfo");
 			$(chacEnd).html(currentObject.Endereco);
+
+			var chacEnd2 = document.createElement("p");
+			$(chacEnd2).addClass("contentInfo");
+			$(chacEnd2).html('Localidade: ' +  currentObject.Endereco);
+
+			var chacNum = document.createElement("p");
+			$(chacNum).addClass("contentInfo");
+			$(chacNum).html('Número: ' + currentObject.Numero);
+
+			var chacComp = document.createElement("p");
+			$(chacComp).addClass("contentInfo");
+			$(chacComp).html('Complemento: ' + currentObject.Complemento);
+
+			var chacCEP = document.createElement("p");
+			$(chacCEP).addClass("contentInfo");
+			$(chacCEP).html('CEP: ' + currentObject.CEP);
 
 			var chacCity = document.createElement("p");
 			$(chacCity).addClass("contentInfo");
 			$(chacCity).html(currentObject.Cidade);
 
-			//Criando a visualização da avaliação da chácara (ainda não está funcional)
-			var star1 = document.createElement("img");
-			star1.src = 'imagens/star1.png';
-			
-			var star2 = document.createElement("img");
-			star2.src = 'imagens/star1.png';
-			
-			var star3 = document.createElement("img");
-			star3.src = 'imagens/star1.png';
-			
-			var star4 = document.createElement("img");
-			star4.src = 'imagens/star1.png';
-			
-			var star5 = document.createElement("img");
-			star5.src = 'imagens/star1.png';
+			var chacCity2 = document.createElement("p");
+			$(chacCity2).addClass("contentInfo");
+			$(chacCity2).html('Cidade: ' + currentObject.Cidade);
+
+			var chacEstado = document.createElement("p");
+			$(chacEstado).addClass("contentInfo");
+			$(chacEstado).html('Estado: ' + currentObject.Estado);
+
+			var chacQtdQuartos = document.createElement("p");
+			$(chacQtdQuartos).addClass("contentInfo2");
+			$(chacQtdQuartos).html('Qtd Quartos: ' + currentObject.Quartos);
+
+			var chacQtdCamas = document.createElement("p");
+			$(chacQtdCamas).addClass("contentInfo2");
+			$(chacQtdCamas).html('Qtd Camas: ' + currentObject.Camas);
+
+			var chacQtdBanheiros = document.createElement("p");
+			$(chacQtdBanheiros).addClass("contentInfo2");
+			$(chacQtdBanheiros).html('Qtd Banheiros: ' + currentObject.Banheiros);
+
+			var chacQtdChurrasqueiras = document.createElement("p");
+			$(chacQtdChurrasqueiras).addClass("contentInfo2");
+			$(chacQtdChurrasqueiras).html('Qtd Churrasqueiras: ' + currentObject.Churrasqueiras);
+
+			var chacQtdPiscinas = document.createElement("p");
+			$(chacQtdPiscinas).addClass("contentInfo2");
+			$(chacQtdPiscinas).html('Qtd Piscinas: ' + currentObject.Piscinas);
+
+			var chacDescricao = document.createElement("p");
+			$(chacDescricao).addClass("contentInfo");
+			$(chacDescricao).html('Descrição da Chácara: ' + currentObject.Descricao);
+
+			var chacDono = document.createElement("p");
+			$(chacDono).addClass("contentInfo");
+			$(chacDono).html('Proprietário: ' + currentObject.Dono);
+
+			var userFoto = document.createElement("img");
+			userFoto.src = currentObject.userFotoURL;
+			$(userFoto).addClass("userFotoChacPage");
+
+			//Criando icones para a pagina com as informações das Chácaras
+			var iconQuartos = document.createElement("img");
+			iconQuartos.src = 'imagens/icon01.jpg';
+
+			var iconCamas = document.createElement("img");
+			iconCamas.src = 'imagens/icon02.jpg';
+
+			var iconBanheiros = document.createElement("img");
+			iconBanheiros.src = 'imagens/icon06.png';
+
+			var iconChurrasqueiras = document.createElement("img");
+			iconChurrasqueiras.src = 'imagens/icon04.png';
+
+			var iconPiscinas = document.createElement("img");
+			iconPiscinas.src = 'imagens/icon05.png';
+
+			//Criando a visualização da avaliação da chácara
+			var avaliacao = currentObject.mediaEstrelas;
+			if (avaliacao == 5) {
+				var star1 = document.createElement("img");
+				star1.src = 'imagens/star1.png';				
+				var star2 = document.createElement("img");
+				star2.src = 'imagens/star1.png';				
+				var star3 = document.createElement("img");
+				star3.src = 'imagens/star1.png';				
+				var star4 = document.createElement("img");
+				star4.src = 'imagens/star1.png';				
+				var star5 = document.createElement("img");
+				star5.src = 'imagens/star1.png';
+			}if (avaliacao == 4) {
+				var star1 = document.createElement("img");
+				star1.src = 'imagens/star1.png';				
+				var star2 = document.createElement("img");
+				star2.src = 'imagens/star1.png';				
+				var star3 = document.createElement("img");
+				star3.src = 'imagens/star1.png';				
+				var star4 = document.createElement("img");
+				star4.src = 'imagens/star1.png';				
+				var star5 = document.createElement("img");
+				star5.src = 'imagens/star0.png';
+			}if (avaliacao == 3) {
+				var star1 = document.createElement("img");
+				star1.src = 'imagens/star1.png';				
+				var star2 = document.createElement("img");
+				star2.src = 'imagens/star1.png';				
+				var star3 = document.createElement("img");
+				star3.src = 'imagens/star1.png';				
+				var star4 = document.createElement("img");
+				star4.src = 'imagens/star0.png';				
+				var star5 = document.createElement("img");
+				star5.src = 'imagens/star0.png';
+			}if (avaliacao == 2) {
+				var star1 = document.createElement("img");
+				star1.src = 'imagens/star1.png';				
+				var star2 = document.createElement("img");
+				star2.src = 'imagens/star1.png';				
+				var star3 = document.createElement("img");
+				star3.src = 'imagens/star0.png';				
+				var star4 = document.createElement("img");
+				star4.src = 'imagens/star0.png';				
+				var star5 = document.createElement("img");
+				star5.src = 'imagens/star0.png';
+			}if (avaliacao == 1) {
+				var star1 = document.createElement("img");
+				star1.src = 'imagens/star1.png';				
+				var star2 = document.createElement("img");
+				star2.src = 'imagens/star0.png';				
+				var star3 = document.createElement("img");
+				star3.src = 'imagens/star0.png';				
+				var star4 = document.createElement("img");
+				star4.src = 'imagens/star0.png';				
+				var star5 = document.createElement("img");
+				star5.src = 'imagens/star0.png';
+			}if(avaliacao == 0) {
+				var star1 = document.createElement("img");
+				star1.src = 'imagens/star0.png';				
+				var star2 = document.createElement("img");
+				star2.src = 'imagens/star0.png';				
+				var star3 = document.createElement("img");
+				star3.src = 'imagens/star0.png';				
+				var star4 = document.createElement("img");
+				star4.src = 'imagens/star0.png';				
+				var star5 = document.createElement("img");
+				star5.src = 'imagens/star0.png';
+			}
 
 			//Criando Botão para selecionar a chácara desejada e visualizar suas informações completas
+			var chacInfoBtn = document.createElement("button");
+			chacInfoBtn.innerHTML = 'Visualizar todas as informações';
+			$(chacInfoBtn).addClass("btn btn-primary collapsible");
+			$(chacInfoBtn).on("click", function(event){
+				mostrarChac();
+			});
+
+			//Criando Botão para selecionar a chácara desejada e requisitar seu aluguel
 			var chacBtn = document.createElement("button");
-			chacBtn.innerHTML = 'Visualizar informações';
-			$(chacBtn).addClass("btn btn-primary");
+			chacBtn.innerHTML = 'Tenho Interesse';
+			$(chacBtn).addClass("btn btn-primary chacBtn");
 			$(chacBtn).on("click", function(event){
-				alert("Teste do Botão");
+				alert("Teste do botão!!!");
 			});
 			
-			$(col).append(chacImage);
 			$(stars).append(star1, star2, star3, star4, star5);
-			$(col2).append(chacNome, chacEnd, chacCity, stars, chacBtn);		
-			$(currentRow).append(col, col2);
+			$(btnChac).append(chacBtn);
+			$(col1).append(chacImage);
+			$(chacDiv1).append(chacNome, chacEnd, chacCity);
+			$(chacDiv2).append(chacNome2, chacEnd2, chacNum, chacComp, chacCEP, chacCity2, chacEstado, iconQuartos, 
+				chacQtdQuartos, iconCamas, chacQtdCamas, iconBanheiros, chacQtdBanheiros, iconChurrasqueiras,
+				chacQtdChurrasqueiras, iconPiscinas,chacQtdPiscinas, chacDescricao, chacDono, userFoto, btnChac);			
+			$(col2).append(chacDiv1, stars, chacInfoBtn, chacDiv2);	
+			$(currentRow).append(col1, col2);
 		}
 	});
 }
 
-//****************Funções da Seção de Visualização de Informações da Chácara selecionada*****************
+//****************Função da Seção de Visualização de Informações da Chácara selecionada*****************
+function mostrarChac(){
+	var coll = document.getElementsByClassName("collapsible");
+	var i;
+
+	for (i = 0; i < coll.length; i++) {
+	  coll[i].addEventListener("click", function() {
+	    this.classList.toggle("active");
+	    var content = this.nextElementSibling;
+	    if (content.style.maxHeight){
+	      content.style.maxHeight = null;
+	    } else {
+	      content.style.maxHeight = content.scrollHeight + "px";
+	    } 
+	  });
+	}
+}
+
+//*******************Função para salvar o valor da avaliação da chácara************************

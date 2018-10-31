@@ -9,6 +9,7 @@
         
         <!-- Tema contendo os icones usados nos botoes de login pelo Google e Facebook-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         
         <!-- Nosso css contendo os estilos aplicados em nosso projeto e o bootstrap-->
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -246,11 +247,13 @@
                     <div id="cadChadBtns" class="secaoCadChacBtn">
                         <div class="secaoCadChacBtn01">
                             <!-- Botão de confirmação dos dados informados-->
-                            <button type="button" class="btn btn-primary upload-group" onclick="uploadFile()">Cadastro Simples</button>                           
+                            <button type="button" class="btn btn-primary upload-group" data-toggle="modal"
+                            data-target="#cadModal">Cadastro Simples</button>
                         </div>
                         <div class="secaoCadChacBtn01">
                             <!-- Botão de confirmação dos dados informados-->
-                            <button type="button" id="cadChacVIPbtn" class="btn btn-primary upload-group">Cadastro VIP</button>                           
+                            <button type="button" class="btn btn-primary upload-group" data-toggle="modal" 
+                            data-target="#cadVIPModal">Cadastro VIP</button>
                         </div>
                         <div class="secaoCadChacBtn01">
                             <!-- Botão cancelar o cadastro dos dados-->
@@ -263,29 +266,54 @@
             </div>
         </section>
 
-        <section id="secCadChacVIP">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4"></div>
-                    <div id="cadChadVIPBtns" class="col-md-4">
-                        <p>O cadastro VIP ofereçe maior segurança a você que está alugando sua chácara.</p>
-                        <p>Será criado um contrato online para a locação de sua propriedade.</p>
-                        <p>Através desta opção voçê se compremete a cumprir com os nossos termos se utilização de serviços.</p>
-                        <div class="secaoCadChacBtn">
-                            <div class="secaoCadChacBtn01">
-                                <!-- Botão de confirmação dos dados informados-->
-                                <button type="button" class="btn btn-primary upload-group" onclick="uploadFile()">Confirmar Cadastro VIP</button>                           
-                            </div>
-                            <div class="secaoCadChacBtn01">
-                                <!-- Botão cancelar o cadastro dos dados-->
-                                <button type="button" id="cancelarCadVIP" class="btn btn-primary upload-group">Cancelar Cadastro VIP</button>                            
-                            </div>                           
-                        </div>
-                        <div class="col-md-4"></div>
-                    </div>
-                </div>
+        <!-- Mensagem Modal para o Cadastro de Chácaras VIP-->
+        <div class="modal fade" id="cadVIPModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cadastro de Chácara - VIP</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Antes de confirmar certifique-se que os dados foram preenchidos corretamente!</p>
+                <p>O cadastro VIP ofereçe maior segurança a você que está alugando sua chácara!</p>
+                <p>Será criado um contrato online para a locação de sua propriedade.</p>
+                <p>Através desta opção voçê se compremete a cumprir com os nossos termos se utilização de serviços.</p>
+                <p>Ao Confirmar seus dados serão processados e em breve sua chácara estará disponivel em nosso app!!!</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary upload-group" data-dismiss="modal" onclick="uploadFile()">Confirmar Cadastro</button> 
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+
+        <!-- Mensagem Modal para o Cadastro de Chácaras comum-->
+        <div class="modal fade" id="cadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cadastro de Chácara - Simples</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Antes de confirmar certifique-se que os dados foram preenchidos corretamente!</p>
+                <p>Ao confirmar o cadastro você se compromete a a cumprir com os nossos termos de utilização de serviços.</p>
+                <p>Os dados informados serão processados e em breve sua chácara estará disponivel em nosso app!!!</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary upload-group" data-dismiss="modal" onclick="uploadFile()">Confirmar Cadastro
+                </button> 
+              </div>
+            </div>
+          </div>
+        </div>
 
         <!-- Seção de FAQ, que contem as principais duvidas a respeito do Web App e seu funcionamento e regras-->
         <section id="secFAQ">
@@ -359,7 +387,7 @@
         
         <!-- Bootstrap core JavaScript-->
         <!-- Colocado no final do documento para que as páginas sejam carregadas mais rapidamente -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
         
         <!-- Nosso javascript contendo o codigo para preencher a pagina com os dados das chacaras no bd-->
