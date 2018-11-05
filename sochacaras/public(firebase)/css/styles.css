@@ -1,5 +1,4 @@
 /*CSS criado pelos alunos e que contem os estilos de cada pagina do Web App Só Chácaras*/
-
 /*Trecho usado para a barra de navegação do bootstrap*/
 .menu{
     list-style-type: none; /*tira as marcações padrões da tag de lista não ordenada*/
@@ -75,6 +74,24 @@
 .userFotoChacPage{
 	width: 20%;
 	border-radius: 50%;
+}
+.contratoIcon{
+	
+}
+#buscaInput {
+  background-image: url('../imagens/buscaIcon.png');
+  background-position: 10px 5px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 50px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+#chacList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 /*Trecho usado para adicionar estilo ao icone da pagina index que redireciona para a pagina de cadastro de chacaras*/

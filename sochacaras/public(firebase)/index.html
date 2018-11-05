@@ -24,16 +24,16 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <meta name="apple-mobile-web-app-title" content="SChácaras">
-        <link rel="apple-touch-icon" href="/imagens/logo/apple-icon-57x57.png" sizes="57x57">
-        <link rel="apple-touch-icon" href="/imagens/logo/apple-icon-60x60.png" sizes="60x60">
-        <link rel="apple-touch-icon" href="/imagens/logo/apple-icon-72x72.png" sizes="72x72">
-        <link rel="apple-touch-icon" href="/imagens/logo/apple-icon-76x76.png" sizes="76x76">
-        <link rel="apple-touch-icon" href="/imagens/logo/apple-icon-114x114.png" sizes="114x114">
-        <link rel="apple-touch-icon" href="/imagens/logo/apple-icon-120x120.png" sizes="120x120">
-        <link rel="apple-touch-icon" href="/imagens/logo/apple-icon-144x144.png" sizes="144x144">
-        <link rel="apple-touch-icon" href="/imagens/logo/apple-icon-152x152.png" sizes="152x152">
-        <link rel="apple-touch-icon" href="/imagens/logo/apple-icon-180x180.png" sizes="180x180">
-        <meta name="msapplication-TileImage" content="/imagens/logo/app-icon-144x144.png">
+        <link rel="apple-touch-icon" href="/imagens/icons/apple-icon-57x57.png" sizes="57x57">
+        <link rel="apple-touch-icon" href="/imagens/icons/apple-icon-60x60.png" sizes="60x60">
+        <link rel="apple-touch-icon" href="/imagens/icons/apple-icon-72x72.png" sizes="72x72">
+        <link rel="apple-touch-icon" href="/imagens/icons/apple-icon-76x76.png" sizes="76x76">
+        <link rel="apple-touch-icon" href="/imagens/icons/apple-icon-114x114.png" sizes="114x114">
+        <link rel="apple-touch-icon" href="/imagens/icons/apple-icon-120x120.png" sizes="120x120">
+        <link rel="apple-touch-icon" href="/imagens/icons/apple-icon-144x144.png" sizes="144x144">
+        <link rel="apple-touch-icon" href="/imagens/icons/apple-icon-152x152.png" sizes="152x152">
+        <link rel="apple-touch-icon" href="/imagens/icons/apple-icon-180x180.png" sizes="180x180">
+        <meta name="msapplication-TileImage" content="/imagens/icons/app-icon-144x144.png">
         <meta name="msapplication-TileColor" content="#fff">
         <meta name="theme-color" content="#4b0082">
     </head>
@@ -64,6 +64,7 @@
                         <li><a href="#" id="faqBtn" class="navBtn" data-toggle="collapse" data-target="#navbarToggleExternalContent">FAQ</a></li>
                         <li><a href="#" id="sobreAppBtn" class="navBtn" data-toggle="collapse" data-target="#navbarToggleExternalContent">Conheça-nos</a></li>
                         <li><a href="#" id="logOutButton" class="navBtn">Sair</a></li>
+                        <li><button id="btnPermission" onclick="askForNotificationPermission()">Permitir Notificações</button></li>
                     </ul>
                 </div>
             </div>
@@ -134,9 +135,15 @@
         </section>
 
         <!-- Seção de lista com as chácaras já cadastradas e disponiveis para alugar-->
-        <section id="secIndex">           
-            <!-- Area onde ficam as chacaras disponiveis para aluguel-->
-            <div class="container" id="chacarasDisplay"></div>
+        <section id="secIndex">
+            <!-- Filtro de pesquisa das chácaras-->    
+            <div class="container">
+               <input type="text" id="buscaInput" onkeyup="buscarFiltro()" placeholder="Buscar por nome, endereço ou cidade..."> 
+            </div> 
+            <!-- Area onde ficam as chacaras disponiveis para aluguel e onde é possivel visualizar todas as informações referentes a determinada chácara-->
+            <div class="container">
+                <ul id="chacList"></ul>
+            </div>
         </section>
 
         <!-- Seção para visualizar todas as informações da chácara desejada pelo usuario-->
@@ -175,6 +182,11 @@
                       <label>Nome do Proprietário: *</label>
                       <input type="text" placeholder="Nome do Proprietário" id="chacDono">
                     </div>
+                    <!-- Local de preenchimento do telefone de contato do propreietario-->
+                    <div class="input-group upload-group">
+                      <label>Tefelone de Contato (com DDD): *</label>
+                      <input type="text" placeholder="34 99999-9999" id="chacTel">
+                    </div>
                     <!-- Local de preenchimento do endereço da chacara-->
                     <div class="input-group upload-group">
                       <label>Endereço: *</label>
@@ -204,6 +216,12 @@
                     <div class="input-group upload-group">
                       <label>Estado: *</label>
                       <input type="text" placeholder="Estado" id="chacEstate">
+                    </div>
+                    <!-- Local de preenchimento do estado em que se localiza a chacara-->
+                    <p>Informe abaixo o valor a ser cobrado pelo aluguel, especificando se é por dia, pessoa ou outro:</p>
+                    <div class="input-group upload-group">
+                      <label>Preço: *</label>
+                      <input type="text" placeholder="R$ 100,00 por pessoa..." id="chacValor">
                     </div>
                     <!-- Local de preenchimento informando se a chacara é mobiliada ou não-->
                     <div class="input-group upload-group">
@@ -248,16 +266,12 @@
                         <div class="secaoCadChacBtn01">
                             <!-- Botão de confirmação dos dados informados-->
                             <button type="button" class="btn btn-primary upload-group" data-toggle="modal"
-                            data-target="#cadModal">Cadastro Simples</button>
-                        </div>
-                        <div class="secaoCadChacBtn01">
-                            <!-- Botão de confirmação dos dados informados-->
-                            <button type="button" class="btn btn-primary upload-group" data-toggle="modal" 
-                            data-target="#cadVIPModal">Cadastro VIP</button>
+                            data-target="#cadModal">Cadastrar</button>
                         </div>
                         <div class="secaoCadChacBtn01">
                             <!-- Botão cancelar o cadastro dos dados-->
-                            <button type="button" id="cancelarCad" class="btn btn-primary upload-group">Cancelar Cadastro</button>                            
+                            <button type="button" id="cancelarCad" class="btn btn-primary upload-group">Cancelar
+                            </button>                            
                         </div>
                     </div>
                 </div>
@@ -266,50 +280,28 @@
             </div>
         </section>
 
-        <!-- Mensagem Modal para o Cadastro de Chácaras VIP-->
-        <div class="modal fade" id="cadVIPModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Cadastro de Chácara - VIP</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <p>Antes de confirmar certifique-se que os dados foram preenchidos corretamente!</p>
-                <p>O cadastro VIP ofereçe maior segurança a você que está alugando sua chácara!</p>
-                <p>Será criado um contrato online para a locação de sua propriedade.</p>
-                <p>Através desta opção voçê se compremete a cumprir com os nossos termos se utilização de serviços.</p>
-                <p>Ao Confirmar seus dados serão processados e em breve sua chácara estará disponivel em nosso app!!!</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-primary upload-group" data-dismiss="modal" onclick="uploadFile()">Confirmar Cadastro</button> 
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Mensagem Modal para o Cadastro de Chácaras comum-->
+        <!-- Mensagem Modal para o Cadastro de Chácaras-->
         <div class="modal fade" id="cadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Cadastro de Chácara - Simples</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Cadastro de Chácara</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
                 <p>Antes de confirmar certifique-se que os dados foram preenchidos corretamente!</p>
-                <p>Ao confirmar o cadastro você se compromete a a cumprir com os nossos termos de utilização de serviços.</p>
-                <p>Os dados informados serão processados e em breve sua chácara estará disponivel em nosso app!!!</p>
+                <p>Nós possuimos duas opções para o cadastro de sua chácara: Cadastro Simples e Cadastro com Contrato:</p>
+                <p>O cadastro Simples lhe permite adicionar sua chácara a nossa lista de chácaras para aluguel, porém nessa opção não será criado um contrato para quem alugar sua chácara.</p>
+                <p>O cadastro com Contrato ofereçe maior segurança a você que está alugando sua chácara! Nele é criado um contrato online para a locação de sua propriedade.</p>
+                <p>Ao confirmar o cadastro, tanto simples quanto com contrato, voçê se compremete a cumprir com os nossos termos se utilização de serviços.</p>
+                <p>Ao Confirmar seus dados serão processados e em breve sua chácara estará disponivel em nosso app!!!</p>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-primary upload-group" data-dismiss="modal" onclick="uploadFile()">Confirmar Cadastro
-                </button> 
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
+                <button type="button" class="btn btn-primary upload-group" data-dismiss="modal" onclick="uploadFile()">Simples</button> 
+                <button type="button" class="btn btn-primary upload-group" data-dismiss="modal" onclick="uploadFileVIP()">Contrato</button> 
               </div>
             </div>
           </div>
@@ -396,6 +388,7 @@
         <!--Links para os js referentes ao funcionamento do serice worker-->
         <script src="js/promisse.js"></script>
         <script src="js/fetch.js"></script>
+        <script src="js/utility.js"></script>
         <script src="js/app.js"></script>
         
     </body>

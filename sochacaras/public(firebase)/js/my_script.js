@@ -261,18 +261,70 @@ function uploadFile() {
 			imageURL: downloadURL,
 			Nome: $("#chacNome").val(),
 			Dono: $("#chacDono").val(),
+			userTelCont: $("#chacTel").val(),
 			Endereco: $("#chacEnd").val(),
 			Numero: $("#chacNum").val(),
 			Complemento: $("#chacComp").val(),
 			CEP: $("#chacCEP").val(),
 			Cidade: $("#chacCity").val(),
 			Estado: $("#chacEstate").val(),
+			valorAluguel: $("#chacValor").val(),
 			Quartos: $("#chacQuartos").val(),
 			Camas: $("#chacCamas").val(),
 			Banheiros: $("#chacBanheiros").val(),
 			Churrasqueiras: $("#chacChurrasqueiras").val(),
 			Piscinas: $("#chacPiscinas").val(),
 			Descricao: $("#chacDescricao").val(),
+			Contrato: "no",
+			totalEstrelas: 0,
+			mediaEstrelas: 0,
+			qtdVotos: 0,
+			userID: user.uid,
+			userName: user.displayName,
+			userFotoURL: user.photoURL
+		};
+		updates['/Chacaras/' + postKey] = postData;
+		firebase.database().ref().update(updates);
+		//Apos salvar os dados o formulario de preenchimento é ocultado
+		completeCadChac();
+	});
+}
+
+//Função para salvar os dados da chacara com a url da imagem selecionada e salvar a imagem no storege do firebase na pasta apropriada
+function uploadFileVIP() {
+	//Criando uma referencia ao root
+	var filename = selectedFile.name;
+	var storageRef = firebase.storage().ref('/fotos-chacaras/' + filename);
+	var uploadTask = storageRef.put(selectedFile);
+
+	uploadTask.on('state_changed', function(snapshot){
+
+	},function(error){
+		//Em caso de der algum erro ao enviar os dados
+	},function(){
+		//Em caso de sucesso ao enviar os dados
+		var postKey = firebase.database().ref('Chacaras/').push().key;
+		var downloadURL = uploadTask.snapshot.downloadURL;
+		var updates = {};
+		var postData = {
+			imageURL: downloadURL,
+			Nome: $("#chacNome").val(),
+			Dono: $("#chacDono").val(),
+			userTelCont: $("#chacTel").val(),
+			Endereco: $("#chacEnd").val(),
+			Numero: $("#chacNum").val(),
+			Complemento: $("#chacComp").val(),
+			CEP: $("#chacCEP").val(),
+			Cidade: $("#chacCity").val(),
+			Estado: $("#chacEstate").val(),
+			valorAluguel: $("#chacValor").val(),
+			Quartos: $("#chacQuartos").val(),
+			Camas: $("#chacCamas").val(),
+			Banheiros: $("#chacBanheiros").val(),
+			Churrasqueiras: $("#chacChurrasqueiras").val(),
+			Piscinas: $("#chacPiscinas").val(),
+			Descricao: $("#chacDescricao").val(),
+			Contrato: "yes",
 			totalEstrelas: 0,
 			mediaEstrelas: 0,
 			qtdVotos: 0,
@@ -289,17 +341,24 @@ function uploadFile() {
 
 //***********************Funções da Seção de Visualização de Chácaras Disponiveis**************************
 //Função usada para pegar os dados do bd e mostra-los na tela
+var db = firebase.database().ref();
+var RefChac = db.child('Chacaras');
+var chacList = document.getElementById("chacList");
+
 function queryDatabase(){
-	firebase.database().ref('/Chacaras/').once('value').then(function(snapshot){
+	RefChac.once('value').then(function(snapshot){
 		var PostObject = snapshot.val();
 		var keys = Object.keys(PostObject);
 		var currentRow;
+		var li;
 		for (var i = 0; i < keys.length; i++){
 			var currentObject = PostObject[keys[i]];
 			if(i % 1 == 0){
 				currentRow = document.createElement("div");
 				$(currentRow).addClass("row");
-				$("#chacarasDisplay").append(currentRow);
+				li = document.createElement("li");
+				$(li).addClass("chacLi");				
+				$(li).append(currentRow);
 			}
 			//Criando colunas com a tag div e adicionando a classe col-md-4 (para a imagem) e col-md-8 (para texto).
 			var col1 = document.createElement("div");
@@ -393,6 +452,14 @@ function queryDatabase(){
 			$(chacDescricao).addClass("contentInfo");
 			$(chacDescricao).html('Descrição da Chácara: ' + currentObject.Descricao);
 
+			var chacAvaliacao = document.createElement("p");
+			$(chacAvaliacao).addClass("contentInfo");
+			$(chacAvaliacao).html('Nota de Avaliação: ' + currentObject.mediaEstrelas);
+
+			var precoAluguel = document.createElement("p");
+			$(precoAluguel).addClass("contentInfo");
+			$(precoAluguel).html('Valor do Aluguel: ' + currentObject.valorAluguel);
+
 			var chacDono = document.createElement("p");
 			$(chacDono).addClass("contentInfo");
 			$(chacDono).html('Proprietário: ' + currentObject.Dono);
@@ -417,7 +484,15 @@ function queryDatabase(){
 			var iconPiscinas = document.createElement("img");
 			iconPiscinas.src = 'imagens/icon05.png';
 
-			//Criando a visualização da avaliação da chácara
+			var chacContrato = currentObject.Contrato;
+			if (chacContrato == 'yes') {
+				var iconContrato = document.createElement("img");
+				iconContrato.src = 'imagens/icon07.png';
+				$(iconContrato).addClass("contratoIcon");
+
+			}
+			
+			//Criando a visualização da avaliação da chácara (resultado)
 			var avaliacao = currentObject.mediaEstrelas;
 			if (avaliacao == 5) {
 				var star1 = document.createElement("img");
@@ -503,13 +578,15 @@ function queryDatabase(){
 				alert("Teste do botão!!!");
 			});
 			
+			$('#chacList').append(li);
 			$(stars).append(star1, star2, star3, star4, star5);
 			$(btnChac).append(chacBtn);
 			$(col1).append(chacImage);
-			$(chacDiv1).append(chacNome, chacEnd, chacCity);
-			$(chacDiv2).append(chacNome2, chacEnd2, chacNum, chacComp, chacCEP, chacCity2, chacEstado, iconQuartos, 
-				chacQtdQuartos, iconCamas, chacQtdCamas, iconBanheiros, chacQtdBanheiros, iconChurrasqueiras,
-				chacQtdChurrasqueiras, iconPiscinas,chacQtdPiscinas, chacDescricao, chacDono, userFoto, btnChac);			
+			$(chacDiv1).append(chacNome, chacEnd, chacCity, iconContrato);
+			$(chacDiv2).append(chacNome2, chacEnd2, chacNum, chacComp, chacCEP, chacCity2, chacEstado, chacAvaliacao, 
+				precoAluguel, iconQuartos, chacQtdQuartos, iconCamas, chacQtdCamas, iconBanheiros, chacQtdBanheiros, 
+				iconChurrasqueiras, chacQtdChurrasqueiras, iconPiscinas,chacQtdPiscinas, chacDescricao, 
+				chacDono, userFoto, btnChac);			
 			$(col2).append(chacDiv1, stars, chacInfoBtn, chacDiv2);	
 			$(currentRow).append(col1, col2);
 		}
@@ -534,4 +611,26 @@ function mostrarChac(){
 	}
 }
 
-//*******************Função para salvar o valor da avaliação da chácara************************
+//***********************Função para salvar o valor da avaliação da chácara****************************
+
+
+//***************************Função do Filtro de Pesquisa por nome*************************************
+function buscarFiltro() {
+        var input, filtro, ul, li, div, i;
+        
+        input = document.getElementById("buscaInput");
+        filtro = input.value.toUpperCase();
+        ul = document.getElementById("chacList");
+        li = ul.getElementsByTagName("li");
+        
+        for (i = 0; i < li.length; i++) {
+            div = li[i].getElementsByTagName("div")[0];
+            if (div.innerHTML.toUpperCase().indexOf(filtro) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
+
+//*********************Função para a notificação push quando cadastrar chácara**************************
