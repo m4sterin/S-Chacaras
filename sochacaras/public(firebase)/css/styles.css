@@ -203,7 +203,6 @@ input[type=number]{  /*mudar o tamanho das caixas*/
 	padding-bottom: 10px;
 }
 
-
 /*Trecho contendo os estilos para os botões colapsaveis que mostram as infomrações das chácaras na pagina inicial*/
 .collapsible {
   cursor: pointer;
