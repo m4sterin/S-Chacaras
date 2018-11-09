@@ -1,0 +1,23 @@
+h3{
+	text-align: center;
+	display: block;
+	color: green;
+}
+div> p{
+	background: #f9f9f9;
+	border: solid 1px #dddddd;
+	border-radius: 10px;
+	margin: 10px 10px 10px 10px;
+
+
+}
+body{
+	background-image: url(http://pixelartmaker.com/art/becdd8955dc57eb.png);
+	background-repeat: repeat;
+	background-size: 100%;	
+}
+a{
+	text-align: center;
+	display: block;
+}
+
