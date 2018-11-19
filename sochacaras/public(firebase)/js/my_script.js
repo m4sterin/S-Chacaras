@@ -12,6 +12,13 @@ var cancelarCad = document.getElementById('cancelarCad');
 var cancelarCadVIP = document.getElementById('cancelarCadVIP');
 var logOutButton = document.getElementById('logOutButton');
 
+var btnFaq = document.getElementById('btnfaq');
+var faqNome = $("#faqNome");
+var faqEmail = $("#faqEmail");
+var faqTelefone = $("#faqTelefone");
+var faqAssunto = $("#faqAssunto");
+var faqMenssagem = $("#faqMensagem");
+
 $(document).ready(function(){
 	//Escondendo alguns elementos quando se estiver na pagina de login
 	$("#myNavbar").show();
@@ -146,6 +153,15 @@ faqBtn.addEventListener('click', function () {
 	$("#secFAQ").show();
 	$("#secSobreApp").hide();
 	$("#cadBtn").show();
+});
+
+btnFaq.addEventListener('click', function(){
+	alert("Sua mensagem foi enviada com sucesso!!!");
+	faqNome.val("");
+	faqEmail.val("");
+	faqTelefone.val("");
+	faqAssunto.val("");
+	faqMenssagem.val("");
 });
 
 //Função para redirecionar a tela sobre o app e a equipe na barra de navegação
@@ -287,6 +303,7 @@ function uploadFile() {
 		firebase.database().ref().update(updates);
 		//Apos salvar os dados o formulario de preenchimento é ocultado
 		completeCadChac();
+		displayChacNotification();
 	});
 }
 
@@ -336,6 +353,7 @@ function uploadFileVIP() {
 		firebase.database().ref().update(updates);
 		//Apos salvar os dados o formulario de preenchimento é ocultado
 		completeCadChac();
+		displayChacNotification();
 	});
 }
 
@@ -371,6 +389,9 @@ function queryDatabase(){
 			//Criando div's para que possam ser colocados alguns itens dentro delas
 			var stars = document.createElement("div");
 			$(stars).addClass("contentStars");
+
+			var starsDiv = document.createElement("div");
+			$(starsDiv).addClass("divStars");
 
 			var btnChac = document.createElement("div");
 			$(btnChac).addClass("btnChac");
@@ -476,22 +497,145 @@ function queryDatabase(){
 			iconCamas.src = 'imagens/icon02.jpg';
 
 			var iconBanheiros = document.createElement("img");
-			iconBanheiros.src = 'imagens/icon06.png';
+			iconBanheiros.src = 'imagens/icon03.jpg';
 
 			var iconChurrasqueiras = document.createElement("img");
-			iconChurrasqueiras.src = 'imagens/icon04.png';
+			iconChurrasqueiras.src = 'imagens/icon04.jpg';
 
 			var iconPiscinas = document.createElement("img");
-			iconPiscinas.src = 'imagens/icon05.png';
+			iconPiscinas.src = 'imagens/icon05.jpg';
 
 			var chacContrato = currentObject.Contrato;
 			if (chacContrato == 'yes') {
 				var iconContrato = document.createElement("img");
-				iconContrato.src = 'imagens/icon07.png';
+				iconContrato.src = 'imagens/icon06.jpg';
 				$(iconContrato).addClass("contratoIcon");
-
+				//Criando Botão para selecionar a chácara desejada e requisitar seu aluguel (com contrato)
+				var chacBtnContract = document.createElement("button");
+				chacBtnContract.innerHTML = 'Tenho Interesse';
+				$(chacBtnContract).addClass("btn btn-primary chacBtn");
+				$(chacBtnContract).on("click", function(event){
+					$("#chacAluguelModalContract").modal();
+				});
+			} else {
+				//Criando Botão para selecionar a chácara desejada e requisitar seu aluguel(sem contrato)
+				var chacBtn = document.createElement("button");
+				chacBtn.innerHTML = 'Tenho Interesse';
+				$(chacBtn).addClass("btn btn-primary chacBtn");
+				$(chacBtn).on("click", function(event){
+					$("#chacAluguelModal").modal();
+				});
 			}
+
+			//Criando o campo para avaliação das chácaras
+			var starsP = document.createElement("p");
+			$(starsP).addClass("starsInfo");
+			$(starsP).html('Avalie esta chácara: ');
+
+			var starsUl = document.createElement("ul");
+			$(starsUl).addClass("starUl");
+
+			var starsBtn1 = document.createElement("button");
+			starsBtn1.innerHTML = 'Votar';
+			$(starsBtn1).addClass("btn btn-primary starBtn");
+			$(starsBtn1).on("click", function(){
+				$('.starLi').removeClass('active');
+				$('.starLi').removeClass('secondary-active');
+				alert('Sua votação foi realizada com Sucesso!');
+			});
+
+			var starsBtn2 = document.createElement("button");
+			starsBtn2.innerHTML = 'Limpar';
+			$(starsBtn2).addClass("btn btn-primary starBtn");
+			$(starsBtn2).on("click", function(){
+				$('.starLi').removeClass('active');
+				$('.starLi').removeClass('secondary-active');
+			});
+
+			var starLi1 = document.createElement("li");
+			$(starLi1).addClass("starLi");
+			var starLabel1 = document.createElement("label");
+			$(starLabel1).attr("for","st1");
+			var starIcon1 = document.createElement("i");
+			$(starIcon1).addClass("fa fa-star");
+			$(starIcon1).attr("aria-hidden","");
+			$(starLabel1).append(starIcon1);
+			var starInput1 = document.createElement("input");
+			$(starInput1).attr("type","radio");
+			$(starInput1).attr("name","star");
+			$(starInput1).attr("value","1");
+			starInput1.id = 'st1';
+			$(starLi1).append(starLabel1, starInput1);
+
+			var starLi2 = document.createElement("li");
+			$(starLi2).addClass("starLi");
+			var starLabel2 = document.createElement("label");
+			$(starLabel2).attr("for","st2");
+			var starIcon2 = document.createElement("i");
+			$(starIcon2).addClass("fa fa-star");
+			$(starIcon2).attr("aria-hidden","");
+			$(starLabel2).append(starIcon2);
+			var starInput2 = document.createElement("input");
+			$(starInput2).attr("type","radio");
+			$(starInput2).attr("name","star");
+			$(starInput2).attr("value","1");
+			starInput2.id = 'st2';
+			$(starLi2).append(starLabel2, starInput2);
+
+			var starLi3 = document.createElement("li");
+			$(starLi3).addClass("starLi");
+			var starLabel3 = document.createElement("label");
+			$(starLabel3).attr("for","st3");
+			var starIcon3 = document.createElement("i");
+			$(starIcon3).addClass("fa fa-star");
+			$(starIcon3).attr("aria-hidden","");
+			$(starLabel3).append(starIcon3);
+			var starInput3 = document.createElement("input");
+			$(starInput3).attr("type","radio");
+			$(starInput3).attr("name","star");
+			$(starInput3).attr("value","1");
+			starInput3.id = 'st3';
+			$(starLi3).append(starLabel3, starInput3);
+
+			var starLi4 = document.createElement("li");
+			$(starLi4).addClass("starLi");
+			var starLabel4 = document.createElement("label");
+			$(starLabel4).attr("for","st4");
+			var starIcon4 = document.createElement("i");
+			$(starIcon4).addClass("fa fa-star");
+			$(starIcon4).attr("aria-hidden","");
+			$(starLabel4).append(starIcon4);
+			var starInput4 = document.createElement("input");
+			$(starInput4).attr("type","radio");
+			$(starInput4).attr("name","star");
+			$(starInput4).attr("value","1");
+			starInput4.id = 'st4';
+			$(starLi4).append(starLabel4, starInput4);
+
+			var starLi5 = document.createElement("li");
+			$(starLi5).addClass("starLi");
+			var starLabel5 = document.createElement("label");
+			$(starLabel5).attr("for","st5");
+			var starIcon5 = document.createElement("i");
+			$(starIcon5).addClass("fa fa-star");
+			$(starIcon5).attr("aria-hidden","");
+			$(starLabel5).append(starIcon5);
+			var starInput5 = document.createElement("input");
+			$(starInput5).attr("type","radio");
+			$(starInput5).attr("name","star");
+			$(starInput5).attr("value","1");
+			starInput5.id = 'st5';
+			$(starLi5).append(starLabel5, starInput5);
+
+			$(starsUl).append(starsP, starLi1, starLi2, starLi3, starLi4, starLi5);
 			
+			$('.starLi').on('click', function(){
+				//$('.starLi').removeClass('active');
+				//$('.starLi').removeClass('secondary-active');
+				$(this).addClass('active');
+				$(this).prevAll().addClass('secondary-active');
+			})
+
 			//Criando a visualização da avaliação da chácara (resultado)
 			var avaliacao = currentObject.mediaEstrelas;
 			if (avaliacao == 5) {
@@ -569,24 +713,17 @@ function queryDatabase(){
 			$(chacInfoBtn).on("click", function(event){
 				mostrarChac();
 			});
-
-			//Criando Botão para selecionar a chácara desejada e requisitar seu aluguel
-			var chacBtn = document.createElement("button");
-			chacBtn.innerHTML = 'Tenho Interesse';
-			$(chacBtn).addClass("btn btn-primary chacBtn");
-			$(chacBtn).on("click", function(event){
-				alert("Teste do botão!!!");
-			});
 			
 			$('#chacList').append(li);
 			$(stars).append(star1, star2, star3, star4, star5);
-			$(btnChac).append(chacBtn);
+			$(starsDiv).append(starsUl, starsBtn1, starsBtn2);
+			$(btnChac).append(chacBtn, chacBtnContract);
 			$(col1).append(chacImage);
 			$(chacDiv1).append(chacNome, chacEnd, chacCity, iconContrato);
 			$(chacDiv2).append(chacNome2, chacEnd2, chacNum, chacComp, chacCEP, chacCity2, chacEstado, chacAvaliacao, 
 				precoAluguel, iconQuartos, chacQtdQuartos, iconCamas, chacQtdCamas, iconBanheiros, chacQtdBanheiros, 
 				iconChurrasqueiras, chacQtdChurrasqueiras, iconPiscinas,chacQtdPiscinas, chacDescricao, 
-				chacDono, userFoto, btnChac);			
+				chacDono, userFoto, starsDiv, btnChac);			
 			$(col2).append(chacDiv1, stars, chacInfoBtn, chacDiv2);	
 			$(currentRow).append(col1, col2);
 		}
@@ -611,26 +748,181 @@ function mostrarChac(){
 	}
 }
 
-//***********************Função para salvar o valor da avaliação da chácara****************************
-
-
-//***************************Função do Filtro de Pesquisa por nome*************************************
+//*******************Função do Filtro de Pesquisa por nome, endereço ou cidade**************************
 function buscarFiltro() {
-        var input, filtro, ul, li, div, i;
+    var input, filtro, ul, li, div, i;
         
-        input = document.getElementById("buscaInput");
-        filtro = input.value.toUpperCase();
-        ul = document.getElementById("chacList");
-        li = ul.getElementsByTagName("li");
+    input = document.getElementById("buscaInput");
+    filtro = input.value.toUpperCase();
+    ul = document.getElementById("chacList");
+    li = ul.getElementsByClassName("chacLi");
         
-        for (i = 0; i < li.length; i++) {
-            div = li[i].getElementsByTagName("div")[0];
-            if (div.innerHTML.toUpperCase().indexOf(filtro) > -1) {
-                li[i].style.display = "";
-            } else {
-                li[i].style.display = "none";
-            }
+    for (i = 0; i < li.length; i++) {
+        div = li[i].getElementsByTagName("div")[0];
+        if (div.innerHTML.toUpperCase().indexOf(filtro) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
         }
     }
+}
 
-//*********************Função para a notificação push quando cadastrar chácara**************************
+//***********************Função para a Notificação de Nova Chácara cadastrada****************************
+function displayChacNotification() {
+  if ('serviceWorker' in navigator) {
+    var options = {
+      body: 'Uma nova Chácara foi cadastrada em nosso App! Venha Conferir!!!',
+      icon: '/imagens/icons/app-icon-96x96.png',
+      dir: 'ltr',
+      lang: 'pt-BR',
+      vibrate: [100, 50, 200],
+      badge: '/imagens/icons/app-icon-96x96.png',
+      tag: 'chac-notification',
+      renotify: true,
+      actions: [
+        { action: 'open', title: 'Ver', icon: '/imagens/icons/app-icon-96x96.png' },
+        { action: 'cancel', title: 'Fechar', icon: '/imagens/icons/app-icon-96x96.png' }
+      ]
+    };
+
+    navigator.serviceWorker.ready
+      .then(function(swreg) {
+        swreg.showNotification('Novidades em nosso App!!!', options);
+      });
+  }
+}
+
+//**********************Função para a Notificação do Aluguel da Chácara escolhida***************************
+function displayAluguelNotification() {
+  if ('serviceWorker' in navigator) {
+    var options = {
+      body: 'Em instantes voçê receberá o contato do Proprietário para que possam resolver os detalhes da locação da chácara!',
+      icon: '/imagens/icons/app-icon-96x96.png',
+      dir: 'ltr',
+      lang: 'pt-BR',
+      vibrate: [100, 50, 200],
+      badge: '/imagens/icons/app-icon-96x96.png',
+      tag: 'alugChac-notification',
+      renotify: true,
+      actions: [
+        { action: 'continue', title: 'Ir para a página', icon: '/imagens/icons/app-icon-96x96.png' },
+        { action: 'cancel', title: 'Fechar', icon: '/imagens/icons/app-icon-96x96.png' }
+      ]
+    };
+
+    navigator.serviceWorker.ready
+      .then(function(swreg) {
+        swreg.showNotification('Você alugou uma Chácara em nosso App!', options);
+      });
+  }
+
+  console.log('Usuário escolheu a chácara!!!');
+}
+
+//*******************Função para a Notificação da Solicitação de contrato da chácara***********************
+function displaySolicitarNotification() {
+  if ('serviceWorker' in navigator) {
+    var options = {
+      body: 'Enviaremos sua solicitação ao proprietário da chácara! Você será notificado assim que o proprietário decidir por fazer o contrato.',
+      icon: '/imagens/icons/app-icon-96x96.png',
+      dir: 'ltr',
+      lang: 'pt-BR',
+      vibrate: [100, 50, 200],
+      badge: '/imagens/icons/app-icon-96x96.png',
+      tag: 'solicitarContract-notification',
+      renotify: true,
+      actions: [
+        { action: 'confirm', title: 'Ok', icon: '/imagens/icons/app-icon-96x96.png' },
+        { action: 'cancel', title: 'Fechar', icon: '/imagens/icons/app-icon-96x96.png' }
+      ]
+    };
+
+    navigator.serviceWorker.ready
+      .then(function(swreg) {
+        swreg.showNotification('Seu pedido de contrato será encaminhado!', options);
+      });
+  }
+
+  console.log('Usuário solicitou contrato!!!');
+}
+
+//**********************Função para mostrar o resultado da Avaliação do Usuario***************************
+function criarStarsForUsers() {
+	var numAleatorioHist = Math.floor(Math.random() * 3);
+	var numAleatorio = Math.floor(Math.random() * 5);
+
+	var st1 = document.createElement("img");
+	st1.src = 'imagens/star0.png';
+	var st2 = document.createElement("img");
+	st2.src = 'imagens/star0.png';
+	var st3 = document.createElement("img");
+	st3.src = 'imagens/star0.png';
+	var st4 = document.createElement("img");
+	st4.src = 'imagens/star0.png';
+	var st5 = document.createElement("img");
+	st5.src = 'imagens/star0.png';
+	
+	if (numAleatorio == 5) {
+		st1.src = 'imagen/star1.png';
+		st2.src = 'imagens/star1.png';
+		st3.src = 'imagens/star1.png';
+		st4.src = 'imagens/star1.png';
+		st5.src = 'imagens/star1.png';
+	}	
+	if (numAleatorio == 4) {
+		st1.src = 'imagens/star1.png';
+		st2.src = 'imagens/star1.png';
+		st3.src = 'imagens/star1.png';
+		st4.src = 'imagens/star1.png';
+		st5.src = 'imagens/star0.png';
+	}
+	if (numAleatorio == 3) {
+		st1.src = 'imagens/star1.png';
+		st2.src = 'imagens/star1.png';
+		st3.src = 'imagens/star1.png';
+		st4.src = 'imagens/star0.png';
+		st5.src = 'imagens/star0.png';
+	}
+	if (numAleatorio == 2) {
+		st1.src = 'imagens/star1.png';
+		st2.src = 'imagens/star1.png';
+		st3.src = 'imagens/star0.png';
+		st4.src = 'imagens/star0.png';
+		st5.src = 'imagens/star0.png';
+	}
+	if (numAleatorio == 1) {
+		st1.src = 'imagens/star1.png';
+		st2.src = 'imagens/star0.png';
+		st3.src = 'imagens/star0.png';
+		st4.src = 'imagens/star0.png';
+		st5.src = 'imagens/star0.png';
+	}
+	if (numAleatorio == 0) {
+		st1.src = 'imagens/star0.png';
+		st2.src = 'imagens/star0.png';
+		st3.src = 'imagens/star0.png';
+		st4.src = 'imagens/star0.png';
+		st5.src = 'imagens/star0.png';
+	}
+
+	$('#userAvaliacao').append(st1, st2, st3, st4, st5);
+	$('#userHistorico').html(numAleatorioHist + ' Chácaras Alugadas');
+}
+
+//********************************Botão Top Up*************************************************
+// Quando o usuário rolar para baixo da parte superior do documento mostra o botão
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 60 || document.documentElement.scrollTop > 60) {
+        document.getElementById("topUpBtn").style.display = "block";
+    } else {
+        document.getElementById("topUpBtn").style.display = "none";
+    }
+}
+
+// Quando o usuário clica no botão, volta até o topo do documento
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}

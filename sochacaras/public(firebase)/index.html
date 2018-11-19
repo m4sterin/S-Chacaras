@@ -9,11 +9,10 @@
         
         <!-- Tema contendo os icones usados nos botoes de login pelo Google e Facebook-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         
         <!-- Nosso css contendo os estilos aplicados em nosso projeto e o bootstrap-->
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <link rel="stylesheet" type="text/css" href="css/styles.min.css">
 
         <!--Usados para java script do bootstrap e do jquery-->
         <script src="js/jquery-3.3.1.min.js"></script>
@@ -38,7 +37,7 @@
         <meta name="theme-color" content="#4b0082">
     </head>
 
-    <body>
+    <body onload="criarStarsForUsers()">
         <!-- Navbar para a tela de login -->
         <nav id="myNavbar">
             <div class="container-fluid">
@@ -64,7 +63,10 @@
                         <li><a href="#" id="faqBtn" class="navBtn" data-toggle="collapse" data-target="#navbarToggleExternalContent">FAQ</a></li>
                         <li><a href="#" id="sobreAppBtn" class="navBtn" data-toggle="collapse" data-target="#navbarToggleExternalContent">Conheça-nos</a></li>
                         <li><a href="#" id="logOutButton" class="navBtn">Sair</a></li>
-                        <li><button id="btnPermission" onclick="askForNotificationPermission()">Permitir Notificações</button></li>
+                        <li>
+                            <button id="btnPermission" class="btnPermission" onclick="askForNotificationPermission()"><i class="fa fa-bell"></i>
+                            </button>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -114,20 +116,13 @@
                     <div class="col-md-12">
                         <div>
                             <h4>Historico:</h4>
-                            <h5>01 Chácaras Alugadas</h5>
+                            <h5 id="userHistorico"></h5>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div>
-                            <!--Lugar onde fica a media de aprovação/avaliação do usuario-->
                             <h5>Média de Aprovação:</h5>
-                            <div id="userAvaliacao">
-                                <img id="s1" src="imagens/star1.png">
-                                <img id="s2" src="imagens/star1.png"> 
-                                <img id="s3" src="imagens/star1.png"> 
-                                <img id="s4" src="imagens/star1.png"> 
-                                <img id="s5" src="imagens/star1.png"> 
-                            </div>                        
+                            <div id="userAvaliacao"></div>                        
                         </div>
                     </div>  
                 </div>
@@ -144,12 +139,6 @@
             <div class="container">
                 <ul id="chacList"></ul>
             </div>
-        </section>
-
-        <!-- Seção para visualizar todas as informações da chácara desejada pelo usuario-->
-        <section id="secChacInfo">
-            <!-- Area onde ficara informaçoes completas da chacara selecionada pelo usuario (tela de visualização de informação da chacara)-->
-            <div class="container" id="contentChac"></div>
         </section>
 
         <!-- Seção de cadastro de nova chácara para alugar-->
@@ -306,6 +295,54 @@
             </div>
           </div>
         </div>
+        <!-- Mensagem Modal para o Aluguel de Chácaras (com contrato)-->
+        <div class="modal fade" id="chacAluguelModalContract" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Aluguel de Chácara</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Selecione a data desejada:</p>
+                <p class="dtParagraf">De:</p><span class="fa fa-calendar calendarIcon"></span><input type="date" name="dataInicio">
+                <p class="dtParagraf">Até:</p><span class="fa fa-calendar calendarIcon"></span><input type="date" name="dataFinal">
+                <p>Esta chácara está sob um contrato online valido em lei que assegura quaisquer danos causados a mesma, temos uma norma de conduta na qual ao estar sujeito aos termos, o locatário deve zelar pelo espaço, assim, não causando transtornos.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary upload-group" data-dismiss="modal" onclick="displayAluguelNotification()">Alugar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Mensagem Modal para o Aluguel de Chácaras (sem contrato)-->
+        <div class="modal fade" id="chacAluguelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Aluguel de Chácara</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Selecione a data desejada:</p>
+                <p class="dtParagraf">De:</p><span class="fa fa-calendar calendarIcon"></span><input type="date" name="dataInicio">
+                <p class="dtParagraf">Até:</p><span class="fa fa-calendar calendarIcon"></span><input type="date" name="dataFinal">
+                <p>Essa chácara não possui contrato online, caso deseje faça uma solicitação de contrato.</p>
+                <p>Ao alugar uma chácara em nosso app voçê se compromete a seguir as normas de utilização de serviços, estando assim resposabilizado pela propriedade a qual está alugando.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary upload-group" data-dismiss="modal" onclick="displayAluguelNotification()">Alugar</button>
+                <button type="button" class="btn btn-primary upload-group" data-dismiss="modal" onclick="displaySolicitarNotification()">Solicitar Contrato</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <!-- Seção de FAQ, que contem as principais duvidas a respeito do Web App e seu funcionamento e regras-->
         <section id="secFAQ">
@@ -363,6 +400,9 @@
              </div>
         </section>
 
+        <!--Botão para voltar ao topa da pagina-->
+        <button onclick="topFunction()" id="topUpBtn" title="GoToTop"><i class="fa fa-caret-up"></i></button>
+
         <!--Link para redirecionar a pagina de cadastro de chacara-->
         <div id="cadBtn" class="container">
             <div class="row">
@@ -377,19 +417,14 @@
         <script src="js/app_firebase.js"></script>
         <script src="https://apis.google.com/js/platform.js" async defer></script>
         
-        <!-- Bootstrap core JavaScript-->
-        <!-- Colocado no final do documento para que as páginas sejam carregadas mais rapidamente -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-        
         <!-- Nosso javascript contendo o codigo para preencher a pagina com os dados das chacaras no bd-->
-        <script src="js/my_script.js"></script>
+        <script src="js/my_script.min.js"></script>
 
         <!--Links para os js referentes ao funcionamento do serice worker-->
-        <script src="js/promisse.js"></script>
-        <script src="js/fetch.js"></script>
-        <script src="js/utility.js"></script>
-        <script src="js/app.js"></script>
+        <script src="js/promisse.min.js"></script>
+        <script src="js/fetch.min.js"></script>
+        <script src="js/utility.min.js"></script>
+        <script src="js/app.min.js"></script>
         
     </body>
 </html>
