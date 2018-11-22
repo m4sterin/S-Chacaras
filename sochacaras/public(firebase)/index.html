@@ -6,20 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Web App para aluguel de Chácaras">
         <meta name="author" content="TrashMakers">
-        
-        <!-- Tema contendo os icones usados nos botoes de login pelo Google e Facebook-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        
-        <!-- Nosso css contendo os estilos aplicados em nosso projeto e o bootstrap-->
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="css/styles.css">
-
-        <!--Usados para java script do bootstrap e do jquery-->
-        <script src="js/jquery-3.3.1.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/styles.min.css">
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
         <script src="js/bootstrap.min.js"></script>
-
-        <!--Usados para o App Manisfest funcionar de forma correta mesmo em dispositovos antigos-->
         <link rel="manifest" href="manifest.json">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -38,14 +29,12 @@
         <meta name="theme-color" content="#4b0082">
     </head>
 
-    <body>
-        <!-- Navbar para a tela de login -->
+    <body onload="criarStarsForUsers()">
         <nav id="myNavbar">
             <div class="container-fluid">
                 <h3 class="tituloNav">Só Chácaras</h3>
             </div>
         </nav>
-        <!-- Navbar criado usando o bootstrap -->
         <div id="bootNavbar" class="pos-f-t">
             <nav class="navbar navbar-dark bg-dark">
                 <div class="navbar-header">
@@ -58,48 +47,43 @@
             <div class="collapse" id="navbarToggleExternalContent">
                 <div class="bg-dark p-4 menu">
                     <ul id="listBtn" class="menu">
-                        <li><a href="#" id="homeBtn" class="navBtn" data-toggle="collapse" data-target="#navbarToggleExternalContent">Home</a></li>
+                        <li><a href="#" id="homeBtn" class="navBtn" data-toggle="collapse" data-target="#navbarToggleExternalContent">Início</a></li>
                         <li><a href="#" id="perfilBtn" class="navBtn" data-toggle="collapse" data-target="#navbarToggleExternalContent">Meu Perfil</a></li>
                         <li><a href="#" id="cadChacBtn" class="navBtn" data-toggle="collapse" data-target="#navbarToggleExternalContent">Cadastrar Chácara</a></li>
                         <li><a href="#" id="faqBtn" class="navBtn" data-toggle="collapse" data-target="#navbarToggleExternalContent">FAQ</a></li>
                         <li><a href="#" id="sobreAppBtn" class="navBtn" data-toggle="collapse" data-target="#navbarToggleExternalContent">Conheça-nos</a></li>
                         <li><a href="#" id="logOutButton" class="navBtn">Sair</a></li>
-                        <li><button id="btnPermission" onclick="askForNotificationPermission()">Permitir Notificações</button></li>
+                        <li>
+                            <button id="btnPermission" class="btnPermission" onclick="askForNotificationPermission()"><i class="fa fa-bell"></i>
+                            </button>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
-
-        <!-- Seção de login com Google ou com Facebook-->
         <section id="secLogin">
-            <!-- Area para fazer o login com e-mail e senha ou com o google -->
             <div class="container secaoLogin">
                 <div class="row">
                     <div class="col-md-4"></div>
                     <div class="col-md-4 logoDiv">
-                        <img src="imagens/logo.png" class="appLogo">  <!-- Logo do app -->
+                        <img src="imagens/logo.png" class="appLogo">
                     </div>
                     <div class="col-md-4"></div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <!-- Botão de confirmação para login com google-->
                         <button type="button" class="btn btn-primary" onclick="signIn()"><i class="fa fa-google-plus"></i> Login com Google</button>
                         <p><small>-- ou --</small></p>
-                        <!-- Botão de confirmação para login com facebook-->
                         <button type="button" class="btn btn-primary" onclick="logIn()"><i class="fa fa-facebook"></i> Login com Facebook</button>
                     </div>
                 </div>
             </div>
         </section>
-        
-        <!-- Seção de perfil do usuario, onde ficara o nome e a foto do usuario logado atualmente-->
         <section id="secUserInfo">
             <div class="container secaoUserInfo">
                 <div class="row">
                     <div class="col-md-4"></div>
                     <div class="col-md-4">
-                        <!--Lugar onde fica a foto do usuario-->
                         <div id="userFoto"></div>
                     </div>
                     <div class="col-md-4"></div>
@@ -107,60 +91,38 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div>
-                            <!--Lugar onde fica o nome do usuario-->
                             <h1 id="userNome"></h1> 
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div>
                             <h4>Historico:</h4>
-                            <h5>01 Chácaras Alugadas</h5>
+                            <h5 id="userHistorico"></h5>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div>
-                            <!--Lugar onde fica a media de aprovação/avaliação do usuario-->
                             <h5>Média de Aprovação:</h5>
-                            <div id="userAvaliacao">
-                                <img id="s1" src="imagens/star1.png">
-                                <img id="s2" src="imagens/star1.png"> 
-                                <img id="s3" src="imagens/star1.png"> 
-                                <img id="s4" src="imagens/star1.png"> 
-                                <img id="s5" src="imagens/star1.png"> 
-                            </div>                        
+                            <div id="userAvaliacao"></div>                        
                         </div>
                     </div>  
                 </div>
             </div>
         </section>
-
-        <!-- Seção de lista com as chácaras já cadastradas e disponiveis para alugar-->
-        <section id="secIndex">
-            <!-- Filtro de pesquisa das chácaras-->    
+        <section id="secIndex">   
             <div class="container">
-               <input type="text" id="buscaInput" onkeyup="buscarFiltro()" placeholder="Buscar por nome, endereço ou cidade..."> 
+               <input type="text" id="buscaInput" onkeyup="buscarFiltro()" placeholder="Buscar por nome, endereço ou cidade..."><span class="fa fa-search searchIcon"></span>
             </div> 
-            <!-- Area onde ficam as chacaras disponiveis para aluguel e onde é possivel visualizar todas as informações referentes a determinada chácara-->
             <div class="container">
                 <ul id="chacList"></ul>
             </div>
         </section>
-
-        <!-- Seção para visualizar todas as informações da chácara desejada pelo usuario-->
-        <section id="secChacInfo">
-            <!-- Area onde ficara informaçoes completas da chacara selecionada pelo usuario (tela de visualização de informação da chacara)-->
-            <div class="container" id="contentChac"></div>
-        </section>
-
-        <!-- Seção de cadastro de nova chácara para alugar-->
         <section id="secCadChac">
-            <!-- Area de cadastro de chacaras que geralmente deve ficar ocultada ate ser solicitado-->
             <div class="container secaoCadChac">  
               <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4 upload-group" id="uploadDiv">
                   <h3>Cadastrar minha Chácara</h3>
-                    <!-- Local informando como é realizado o cadastramento da chacara-->
                     <div>
                       <p>Primeiro selecione uma foto para sua Chácara</p>
                       <p>Apos selecionar a foto preencha todos os dados corretamente</p>
@@ -172,58 +134,47 @@
                           <span>Selecione uma Foto</span>
                         </label>                        
                     </div>
-                    <!-- Local de preenchimento do nome da chacara-->
                     <div class="input-group upload-group">
                       <label>Nome da Chácara: *</label>
                       <input type="text" placeholder="Nome da Chácara" id="chacNome">
                     </div>
-                    <!-- Local de preenchimento do nome do propreietario-->
                     <div class="input-group upload-group">
                       <label>Nome do Proprietário: *</label>
                       <input type="text" placeholder="Nome do Proprietário" id="chacDono">
                     </div>
-                    <!-- Local de preenchimento do telefone de contato do propreietario-->
                     <div class="input-group upload-group">
                       <label>Tefelone de Contato (com DDD): *</label>
                       <input type="text" placeholder="34 99999-9999" id="chacTel">
                     </div>
-                    <!-- Local de preenchimento do endereço da chacara-->
                     <div class="input-group upload-group">
                       <label>Endereço: *</label>
                       <input type="text" placeholder="Endereço da Chácara" id="chacEnd">
                     </div>
-                    <!-- Local de preenchimento do numero da chacara (se tiver)-->
                     <div class="input-group upload-group">
                       <label>Número: </label>
                       <input type="number" placeholder="0" id="chacNum">
                     </div>
-                    <!-- Local de preenchimento do complemento ao endereço (opcional)-->
                     <div class="input-group upload-group">
                       <label>Complemento:</label>
                       <input type="text" placeholder="Complemento" id="chacComp">
                     </div>
-                    <!-- Local de preenchimento do cep da chacara-->
                     <div class="input-group upload-group">
                       <label>CEP: *</label>
                       <input type="text" placeholder="CEP da Chácara" id="chacCEP">
                     </div>
-                    <!-- Local de preenchimento da cidade em que se localiza a chacara-->
                     <div class="input-group upload-group">
                       <label>Cidade: *</label>
                       <input type="text" placeholder="Cidade" id="chacCity">
                     </div>
-                    <!-- Local de preenchimento do estado em que se localiza a chacara-->
                     <div class="input-group upload-group">
                       <label>Estado: *</label>
                       <input type="text" placeholder="Estado" id="chacEstate">
                     </div>
-                    <!-- Local de preenchimento do estado em que se localiza a chacara-->
                     <p>Informe abaixo o valor a ser cobrado pelo aluguel, especificando se é por dia, pessoa ou outro:</p>
                     <div class="input-group upload-group">
                       <label>Preço: *</label>
                       <input type="text" placeholder="R$ 100,00 por pessoa..." id="chacValor">
                     </div>          
-                    <!-- Local de preenchimento informando se a chacara é mobiliada ou não-->
                     <div class="input-group upload-group">
                       <label>Mobiliada: *</label>
                       <input type="checkbox" id="chacSim" value="Sim">Sim
@@ -232,44 +183,36 @@
                     <div>
                       <p>Informe abaixo a quantidade de:</p>
                     </div>
-                    <!-- Local de preenchimento informando a quantidade de quartos-->
                     <div class="input-group upload-group">
                       <label>Quartos: *</label>
                       <input type="number" placeholder="0" id="chacQuartos">
                     </div>
-                    <!-- Local de preenchimento informando a quantidade de camas-->
                     <div class="input-group upload-group">
                       <label>Camas: *</label>
                       <input type="number" placeholder="0" id="chacCamas">
                     </div>
-                    <!-- Local de preenchimento informando a quantidade de banheiros-->
                     <div class="input-group upload-group">
                       <label>Banheiros: *</label>
                       <input type="number" placeholder="0" id="chacBanheiros">
                     </div>
-                    <!-- Local de preenchimento informando a quantidade de churrasqueiras (se tiver)-->
                     <div class="input-group upload-group">
                       <label>Churrasqueiras: *</label>
                       <input type="number" placeholder="0" id="chacChurrasqueiras">
                     </div>
-                    <!-- Local de preenchimento informando a quantidade de piscinas (se tiver)-->
                     <div class="input-group upload-group">
                       <label>Piscinas: *</label>
                       <input type="number" placeholder="0" id="chacPiscinas">
                     </div>
-                    <!-- Local de preenchimento informando descriçoes a mais por parte do proprietario-->
                     <div class="input-group upload-group">
                       <label>Adicione Alguma Descrição: *</label>
                       <textarea cols="40" rows="7" placeholder="Minha Chácara" id="chacDescricao"></textarea>
                     </div>
                     <div id="cadChadBtns" class="secaoCadChacBtn">
                         <div class="secaoCadChacBtn01">
-                            <!-- Botão de confirmação dos dados informados-->
                             <button type="button" class="btn btn-primary upload-group" data-toggle="modal"
                             data-target="#cadModal">Cadastrar</button>
                         </div>
                         <div class="secaoCadChacBtn01">
-                            <!-- Botão cancelar o cadastro dos dados-->
                             <button type="button" id="cancelarCad" class="btn btn-primary upload-group">Cancelar
                             </button>                            
                         </div>
@@ -279,8 +222,6 @@
               </div>  
             </div>
         </section>
-
-        <!-- Mensagem Modal para o Cadastro de Chácaras-->
         <div class="modal fade" id="cadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -306,10 +247,53 @@
             </div>
           </div>
         </div>
-
-        <!-- Seção de FAQ, que contem as principais duvidas a respeito do Web App e seu funcionamento e regras-->
+        <div class="modal fade" id="chacAluguelModalContract" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Aluguel de Chácara</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Selecione a data desejada:</p>
+                <p class="dtParagraf">De:</p><span class="fa fa-calendar calendarIcon"></span><input type="date" name="dataInicio">
+                <p class="dtParagraf">Até:</p><span class="fa fa-calendar calendarIcon"></span><input type="date" name="dataFinal">
+                <p>Esta chácara está sob um contrato online valido em lei que assegura quaisquer danos causados a mesma, temos uma norma de conduta na qual ao estar sujeito aos termos, o locatário deve zelar pelo espaço, assim, não causando transtornos.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary upload-group" data-dismiss="modal" onclick="displayAluguelNotification()">Alugar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="chacAluguelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Aluguel de Chácara</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Selecione a data desejada:</p>
+                <p class="dtParagraf">De:</p><span class="fa fa-calendar calendarIcon"></span><input type="date" name="dataInicio">
+                <p class="dtParagraf">Até:</p><span class="fa fa-calendar calendarIcon"></span><input type="date" name="dataFinal">
+                <p>Essa chácara não possui contrato online, caso deseje faça uma solicitação de contrato.</p>
+                <p>Ao alugar uma chácara em nosso app voçê se compromete a seguir as normas de utilização de serviços, estando assim resposabilizado pela propriedade a qual está alugando.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary upload-group" data-dismiss="modal" onclick="displayAluguelNotification()">Alugar</button>
+                <button type="button" class="btn btn-primary upload-group" data-dismiss="modal" onclick="displaySolicitarNotification()">Solicitar Contrato</button>
+              </div>
+            </div>
+          </div>
+        </div>
         <section id="secFAQ">
-            <!--Abaixo serão colocadas as informações de ajuda, peguntas mais frequentes, aos usuarios-->
             <div class="container">
                 <div class="row secaoFAQ">
                     <div class="col-md-12 textFAQ">
@@ -319,35 +303,73 @@
                             <li>Como anunciar chácaras?</li>
                                 <p>O anuncio de chácaras pode ser feito por meio da opção "Cadastrar Chácara", no menu, ou pelo botão de atalho "+"na tela inicial.</p>
                             <li>Como subir fotos para a minha chácara?</li>
-                                <p>Para subir fotos de sua chácara, durante o cadastro, selecione a opção "Adicionar Fotos" e escolhas as que preferir, elas aparecerão na página de sua chácara.</p>
-                            <li>Posso alterar meu nome de perfil e senha?</li>
-                                <P>Sim voçê pode. Para isso é preciso clicar na opção do menu Alterar Dados Pessoais. Nessa tela você pode também alterar seus outros dados.</P>
-                            <li>Esqueci minha senha, e agora?</li>
-                                <p>Basta clicar no botão "Não lembro minha senha", na tela de login, e realizar os passos necessários para a definição de sua nova senha</p>
-                            <li>Como faço o pagamento?</li>
-                                <p>O pagamento é realizado na efetivação do cadastro de sua chácara, é cobrado apenas uma pequena taxa para manter o anuncio de sua chácara em nosso App Web.</p>
+                                <p>Para subir fotos de sua chácara, durante o cadastro, selecione a opção "Adicionar Fotos" e escolha a que preferir, ela aparecerá na página de sua chácara.</p>
+                            <li>O Login é feito com o Facebook e o Google?</li>
+                                <p>Sim você pode logar com Facebook ou com o Google, dessa forma serão recuperados alguns de seus dados, como, foto de perfil do Google ou Facebook, nome do perfil, entre outros dados importantes.</p>
                             <li>Como coloco foto no meu perfil?</li>
-                                <p>Na página de seu perfil clique na sua foto atual, em seguida, escolha uma de sua galeria ou tire uma nova foto na hora.</p>
+                                <p>A foto do seu perfil é a mesma foto usada na sua conta do Google ou Facebook dependendo por qual metodo você fez login.</p>
+                            <li>Como faço o pagamento?</li>
+                                <p>O pagamento é realizado na efetivação do cadastro de sua chácara, é cobrado apenas uma pequena taxa para a emissão do Contrato Online de sua chácara em nosso App Web.</p>
+                            <li>Para que serve o contrato online?</li>
+                                <p>O contrato online oferece maior segurança a ambos locador e locatário durante a locação da chácara.</p>
+                            <li>O contrato online é obrigatório?</li>
+                                <p>Não, durante o cadastro da chácara o dono decide pela opção de ter um contrato de locação para sua chácara, ou não ter o contrato, assim quando uma pessoa quiser alugar a chácara será então criado o contrato online.</p>
+                            <li>Como sei que uma Chácara tem a opção de contrato online?</li>
+                                <p>Na tela inicial contendo a lista de chácaras cadastradas, as que tiverem contratos terão um icone de um contrato ao lado de sua foto.</p>
+                            <li>A chácara que eu quero não tem contrato online, mas quero fazer contrato, e agora?</li>
+                                <p>Ao selecionar a opção "Tenho Interesse", caso a chácara não tenha contrato voçê poderá mandar uma solicitação ao dono da chácara para que ele possa autorizar a criação de um contrato para a chácara dele. Assim que ele resolver por adcionar o contrato, ou não, voçê será avisado por meio do nosso sistema de notificações.</p>  
                             <li>O que é o sistema de avaliação?</li>
                                 <p>Em nosso App Web voçê pode avaliar as chácaras que alugou e as pessoas com quem fechou negócio, dando a eles de 1 a 5 estrelas, sendo que 1 é a nota de avaliação mais baixa e 5 é a nota mais alta.</p>
                             <li>Como faço meu cadastro?</li>
-                                <p>Em nossa página inicial clique no botão "Cadastrar" para ser redirecionado a uma nova página, onde deverá preencher os campos solicitados, e após checar se preencheu todos os dados corretamente, clicar em "Confirmar Cadastro" </p>
-                            <li>Posso fazer Login com o Facebook e o Google?</li>
-                                <p>Sim você pode logar com Facebook ou com o Google, mas após deve preencher alguns dados solicitados.</p>
+                                <p>Para um novo usuário basta fazer login usando uma conta sua do Google ou do Facebook que será criado um perfil automatico contendo seus dados, como foto, nome, entre outros.</p>
                             <li>Como funciona o filtro de pesquisa?</li>
-                                <p>As chácaras anunciadas em nosso App Web, são classificadas por distância média, entre o endereço do usuário e o endereço da chácara, niveis de avaliação (1 a 5 estrelas) e preços. Voçê pode escolher os parametros que desejar que o filtro de pesquisa irá lhe retornar as chácaras que encaixam nas escolhas.</p>
+                                <p>As Chácaras em nosso app podem ser filtradas de acordo com o nome da chácara, o endereço/localização ou ainda pela cidade.</p>
                         </ol>
-                        <h3>Ainda possui dúvidas?</h3>
-                        <p>Nos mande uma mensagem com sua dúvida que responderemos o mais breve possível.</p>
-                        <p>E-mail de contato: sochacaras2018@gmail.com</p>
                     </div>
                 </div>
             </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <h3 class="faqTitle">Dúvidas? Críticas? Elogios? Sugestões?</h3>
+                        <p>Nos mande uma mensagem com sua dúvida que responderemos o mais breve possível.</p>
+                        <p>E-mail de contato: sochacaras2018@gmail.com</p>
+                        <p class="faqText"><small>ou</small></p>
+                        <h4 class="faqTitle">FALE CONOSCO</h4>
+                        <p>Este canal de comunicação foi criado exclusivamente para que voçê possa obter informações sobre os nossos serviços, tirar dúvidas e dar sugestões.</p>
+                        <p>Para entrar em contato conosco envie-nos sua mensagem:</p>
+                        <form>
+                            <div class="fagItem">
+                                <label class="formLabel">NOME COMPLETO:</label>
+                                <input id="faqNome" class="faqInput" type="text" name="inputNome" placeholder="Digite seu nome completo">
+                            </div>
+                            <div class="fagItem">
+                                <label class="formLabel">EMAIL:</label>
+                                <input id="faqEmail" class="faqInput" type="email" name="inputEmail" placeholder="Digite seu e-mail">
+                            </div>
+                            <div class="fagItem">
+                                <label class="formLabel">TELEFONE:</label>
+                                <input id="faqTelefone" class="faqInput" type="text" name="inputTelefone" placeholder="Digite seu telefone">
+                            </div>
+                            <div class="fagItem">
+                                <label class="formLabel">ASSUNTO</label>
+                                <input id="faqAssunto" class="faqInput" type="text" name="inputAssunto" placeholder="Digite o assunto da mensagem">             
+                            </div>
+                            <div class="fagItem">
+                                <label class="formLabel">MENSAGEM:</label>
+                                <textarea id="faqMensagem" class="faqInput" cols="50" rows="3" placeholder="Digite sua mensagem"></textarea>                
+                            </div>
+                            <div class="btnFaq">
+                                <button id="btnfaq" type="button" class="btn btn-primary">ENVIAR</button>     
+                            </div>                        
+                        </form>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+            </div>
         </section>
-
-        <!-- Seção sobre a equipe desenvolvedora e sobre o trabalho desenvolvido-->
         <section id="secSobreApp">
-            <!--Abaixo serão colocadas as informações sobre o grupo-->
             <div class="container">
                  <div class="row secaoSobreApp">
                      <div class="col-md-12 textSobreApp">
@@ -362,8 +384,7 @@
                  </div>
              </div>
         </section>
-
-        <!--Link para redirecionar a pagina de cadastro de chacara-->
+        <button onclick="topFunction()" id="topUpBtn" title="GoToTop"><i class="fa fa-caret-up"></i></button>
         <div id="cadBtn" class="container">
             <div class="row">
                 <div>
@@ -371,25 +392,13 @@
                 </div>
             </div>
         </div>
-
-        <!-- Inicialização do Firebase-->
         <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
         <script src="js/app_firebase.js"></script>
         <script src="https://apis.google.com/js/platform.js" async defer></script>
-        
-        <!-- Bootstrap core JavaScript-->
-        <!-- Colocado no final do documento para que as páginas sejam carregadas mais rapidamente -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-        
-        <!-- Nosso javascript contendo o codigo para preencher a pagina com os dados das chacaras no bd-->
-        <script src="js/my_script.js"></script>
-
-        <!--Links para os js referentes ao funcionamento do serice worker-->
-        <script src="js/promisse.js"></script>
-        <script src="js/fetch.js"></script>
-        <script src="js/utility.js"></script>
-        <script src="js/app.js"></script>
-        
+        <script src="js/my_script.min.js"></script>
+        <script src="js/promisse.min.js"></script>
+        <script src="js/fetch.min.js"></script>
+        <script src="js/utility.min.js"></script>
+        <script src="js/app.min.js"></script>        
     </body>
 </html>

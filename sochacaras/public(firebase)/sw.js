@@ -3,11 +3,13 @@ var CACHE_DYNAMIC_NAME = 'dynamic-v2';
 var STATIC_FILES = [
   '/',
     '/index.html',
-    '/js/app.js',
-    '/js/promisse.js',
-    '/js/fetch.js',
-    '/js/my_script.js',
-    '/css/styles.css',
+    '/js/app.min.js',
+    '/js/promisse.min.js',
+    '/js/fetch.min.js',
+    '/js/my_script.min.js',
+    '/js/bootstrap.min.js',
+    '/css/bootstrap.min.css',
+    '/css/styles.min.css',
     '/imagens/logo.png',
     '/imagens/star0.png',
     '/imagens/star1.png',
@@ -42,17 +44,16 @@ self.addEventListener('activate', function (event) {
 
 function isInArray(string, array) {
   var cachePath;
-  if (string.indexOf(self.origin) === 0) { // solicitar domínio de destino no qual exibimos a página (ou seja, NÃO é um CDN)
+  if (string.indexOf(self.origin) === 0) {
     console.log('matched ', string);
-    cachePath = string.substring(self.origin.length); // tome a parte do URL APÓS o domínio (por exemplo, depois do localhost: 8080)
+    cachePath = string.substring(self.origin.length);
   } else {
-    cachePath = string; // armazenar o pedido completo (para CDNs)
+    cachePath = string;
   }
   return array.indexOf(cachePath) > -1;
 }
 
 self.addEventListener('fetch', function (event) {
-
   var url = 'https://httpbin.org/get';
   if (event.request.url.indexOf(url) > -1) {
     event.respondWith(
@@ -60,7 +61,6 @@ self.addEventListener('fetch', function (event) {
         .then(function (cache) {
           return fetch(event.request)
             .then(function (res) {
-              // trimCache(CACHE_DYNAMIC_NAME, 3);
               cache.put(event.request, res.clone());
               return res;
             });
@@ -81,7 +81,6 @@ self.addEventListener('fetch', function (event) {
               .then(function (res) {
                 return caches.open(CACHE_DYNAMIC_NAME)
                   .then(function (cache) {
-                    // trimCache(CACHE_DYNAMIC_NAME, 3);
                     cache.put(event.request.url, res.clone());
                     return res;
                   })
@@ -100,18 +99,21 @@ self.addEventListener('fetch', function (event) {
   }
 });
 
-//Trecho referente ao push notification
 self.addEventListener('notificationclick', function(event) {
   var notification = event.notification;
   var action = event.action;
-
   console.log(notification);
-
   if (action === 'confirm') {
     console.log('Ok!');
     notification.close();
+  } if (action === 'open') {
+    console.log('Abrir nova URL!');
+    notification.close();
+  } if (action === 'continue') {
+    console.log('Escolher forma de Aluguel!');
+    notification.close();
   } else {
-    console.log('Cancelar!');
+    console.log('Fechado!');
     notification.close();
   }
 });
@@ -120,16 +122,12 @@ self.addEventListener('notificationclose', function(event) {
   console.log('A notificação foi fechada!', event);
 });
 
-//
 self.addEventListener('push', function(event) {
   console.log('Notificação Push Recebida!', event);
-
   var data = {title: 'Novidade!', content: 'Nova Chácara cadastrada!', openUrl: '/'};
-
   if (event.data) {
     data = JSON.parse(event.data.text());
   }
-
   var options = {
     body: data.content,
     icon: '/imagens/icons/app-icon-96x96.png',
@@ -138,7 +136,6 @@ self.addEventListener('push', function(event) {
       url: data.openUrl
     }
   };
-
   event.waitUntil(
     self.registration.showNotification(data.title, options)
   );
