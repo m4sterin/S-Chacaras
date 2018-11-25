@@ -270,7 +270,7 @@ function uploadFile() {
 		//Em caso de der algum erro ao enviar os dados
 	},function(){
 		//Em caso de sucesso ao enviar os dados
-		var postKey = firebase.database().ref('Chacaras/').push().key;
+		var postKey = firebase.database().ref('ChacarasPendentes/').push().key;
 		var downloadURL = uploadTask.snapshot.downloadURL;
 		var updates = {};
 		var postData = {
@@ -299,7 +299,7 @@ function uploadFile() {
 			userName: user.displayName,
 			userFotoURL: user.photoURL
 		};
-		updates['/Chacaras/' + postKey] = postData;
+		updates['/ChacarasPendentes/' + postKey] = postData;
 		firebase.database().ref().update(updates);
 		//Apos salvar os dados o formulario de preenchimento é ocultado
 		completeCadChac();
@@ -320,7 +320,7 @@ function uploadFileVIP() {
 		//Em caso de der algum erro ao enviar os dados
 	},function(){
 		//Em caso de sucesso ao enviar os dados
-		var postKey = firebase.database().ref('Chacaras/').push().key;
+		var postKey = firebase.database().ref('ChacarasPendentes/').push().key;
 		var downloadURL = uploadTask.snapshot.downloadURL;
 		var updates = {};
 		var postData = {
@@ -349,7 +349,7 @@ function uploadFileVIP() {
 			userName: user.displayName,
 			userFotoURL: user.photoURL
 		};
-		updates['/Chacaras/' + postKey] = postData;
+		updates['/ChacarasPendentes/' + postKey] = postData;
 		firebase.database().ref().update(updates);
 		//Apos salvar os dados o formulario de preenchimento é ocultado
 		completeCadChac();
@@ -485,6 +485,10 @@ function queryDatabase(){
 			$(chacDono).addClass("contentInfo");
 			$(chacDono).html('Proprietário: ' + currentObject.Dono);
 
+			var donoChacTel = document.createElement("p");
+			$(donoChacTel).addClass("contentInfo");
+			$(donoChacTel).html('Telefone: ' + currentObject.userTelCont);
+
 			var userFoto = document.createElement("img");
 			userFoto.src = currentObject.userFotoURL;
 			$(userFoto).addClass("userFotoChacPage");
@@ -515,7 +519,7 @@ function queryDatabase(){
 				chacBtnContract.innerHTML = 'Tenho Interesse';
 				$(chacBtnContract).addClass("btn btn-primary chacBtn");
 				$(chacBtnContract).on("click", function(event){
-					$("#chacAluguelModalContract").modal();
+					$("#chacAluguelModalContract").modal("show");//usado para mostrar a caixa de dialogo quando clicar no botão
 				});
 			} else {
 				//Criando Botão para selecionar a chácara desejada e requisitar seu aluguel(sem contrato)
@@ -523,7 +527,7 @@ function queryDatabase(){
 				chacBtn.innerHTML = 'Tenho Interesse';
 				$(chacBtn).addClass("btn btn-primary chacBtn");
 				$(chacBtn).on("click", function(event){
-					$("#chacAluguelModal").modal();
+					$("#chacAluguelModal").modal("show");//usado para mostrar a caixa de dialogo quando clicar no botão
 				});
 			}
 
@@ -723,7 +727,7 @@ function queryDatabase(){
 			$(chacDiv2).append(chacNome2, chacEnd2, chacNum, chacComp, chacCEP, chacCity2, chacEstado, chacAvaliacao, 
 				precoAluguel, iconQuartos, chacQtdQuartos, iconCamas, chacQtdCamas, iconBanheiros, chacQtdBanheiros, 
 				iconChurrasqueiras, chacQtdChurrasqueiras, iconPiscinas,chacQtdPiscinas, chacDescricao, 
-				chacDono, userFoto, starsDiv, btnChac);			
+				chacDono, donoChacTel, userFoto, starsDiv, btnChac);			
 			$(col2).append(chacDiv1, stars, chacInfoBtn, chacDiv2);	
 			$(currentRow).append(col1, col2);
 		}
@@ -796,7 +800,7 @@ function displayChacNotification() {
 function displayAluguelNotification() {
   if ('serviceWorker' in navigator) {
     var options = {
-      body: 'Em instantes voçê receberá o contato do Proprietário para que possam resolver os detalhes da locação da chácara!',
+      body: 'Certifique-se que voçê entrou contato com o Proprietário para que possam resolver os detalhes da locação da chácara!',
       icon: '/imagens/icons/app-icon-96x96.png',
       dir: 'ltr',
       lang: 'pt-BR',
@@ -817,6 +821,7 @@ function displayAluguelNotification() {
   }
 
   console.log('Usuário escolheu a chácara!!!');
+  $("#chacAluguelModalContract").modal("hide");
 }
 
 //*******************Função para a Notificação da Solicitação de contrato da chácara***********************

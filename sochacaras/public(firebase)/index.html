@@ -11,6 +11,7 @@
         <link rel="stylesheet" type="text/css" href="css/styles.min.css">
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src='js/embedded.js' type='text/javascript'></script>
         <link rel="manifest" href="manifest.json">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -241,58 +242,81 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
-                <button type="button" class="btn btn-primary upload-group" data-dismiss="modal" onclick="uploadFile()">Simples</button> 
-                <button type="button" class="btn btn-primary upload-group" data-dismiss="modal" onclick="uploadFileVIP()">Contrato</button> 
+
+                <!--<button type="button" class="btn btn-primary upload-group" data-dismiss="modal" onclick="uploadFile()">Simples</button>  -->
+
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" name="hosted_button_id" value="UYLLUKGZH5J4E">
+                <table>
+                <tr><td><input type="hidden" name="on0" value="Tipos de Cadastro">Tipos de Cadastro</td></tr><tr><td><select name="os0">
+                  <option value="Simples">Simples R$4,00</option>
+                  <option value="Contrato">Contrato R$10,00</option>
+                </select> </td></tr>
+                </table>
+                <input type="hidden" name="currency_code" value="BRL">
+                <input type="image" src="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_paynowCC_LG.gif" onclick="uploadFileVIP()" border="0" name="submit" alt="PayPal - A maneira fácil e segura de enviar pagamentos online!">
+                <img alt="" border="0" src="https://www.paypalobjects.com/pt_BR/i/scr/pixel.gif" width="1" height="1">
+                </form>
+
+
+             <!--   <button type="button" class="btn btn-primary upload-group" data-dismiss="modal" onclick="uploadFileVIP()">Contrato</button> -->
               </div>
             </div>
           </div>
         </div>
-        <div class="modal fade" id="chacAluguelModalContract" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Aluguel de Chácara</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <p>Selecione a data desejada:</p>
-                <p class="dtParagraf">De:</p><span class="fa fa-calendar calendarIcon"></span><input type="date" name="dataInicio">
-                <p class="dtParagraf">Até:</p><span class="fa fa-calendar calendarIcon"></span><input type="date" name="dataFinal">
-                <p>Esta chácara está sob um contrato online valido em lei que assegura quaisquer danos causados a mesma, temos uma norma de conduta na qual ao estar sujeito aos termos, o locatário deve zelar pelo espaço, assim, não causando transtornos.</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary upload-group" data-dismiss="modal" onclick="displayAluguelNotification()">Alugar</button>
-              </div>
-            </div>
-          </div>
-        </div>
+       <div class="modal fade" id="chacAluguelModalContract" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                 <div class="modal-dialog" role="document">
+                   <div class="modal-content">
+                     <div class="modal-header">
+                       <h5 class="modal-title" id="exampleModalLabel">Aluguel de Chácara</h5>
+                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                       </button>
+                     </div>
+                     <div class="modal-body">
+                       <p>Selecione a data desejada:</p>
+                       <p class="dtParagraf">De:</p><span class="fa fa-calendar calendarIcon"></span><input type="date" name="dataInicio">
+                       <p class="dtParagraf">Até:</p><span class="fa fa-calendar calendarIcon"></span><input type="date" name="dataFinal"><br>
+                       <p><span class="fa fa-exclamation-circle exclamationIcon"></span>Antes de seguir adiante e confirmar o aluguel da chácara tenha certeza de entrar em contato com o respectivo proprietário para tirar possivéis dúvidas que voçê tenha.</p>
+                       <p>Esta chácara está sob um contrato online valido em lei que assegura quaisquer danos causados a mesma, temos uma norma de conduta na qual ao estar sujeito aos termos, o locatário deve zelar pelo espaço, assim, não causando transtornos.</p>
+                       <p>Apenas clique em "Alugar" caso tenha certeza de sua decisão e que já tenha entrado em contato com o propriétario da chácara.</p>
+                     </div>
+                     <div class="modal-footer">
+                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                       <a href="contrato/ContratoLocacaoSoChacaras.pdf" download="contrato_chacara">
+                         <button type="button" class="btn btn-primary upload-group" onclick="displayAluguelNotification()">Alugar</button>
+                       </a>
+                     </div>
+                   </div>
+                 </div>
+               </div>
         <div class="modal fade" id="chacAluguelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Aluguel de Chácara</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <p>Selecione a data desejada:</p>
-                <p class="dtParagraf">De:</p><span class="fa fa-calendar calendarIcon"></span><input type="date" name="dataInicio">
-                <p class="dtParagraf">Até:</p><span class="fa fa-calendar calendarIcon"></span><input type="date" name="dataFinal">
-                <p>Essa chácara não possui contrato online, caso deseje faça uma solicitação de contrato.</p>
-                <p>Ao alugar uma chácara em nosso app voçê se compromete a seguir as normas de utilização de serviços, estando assim resposabilizado pela propriedade a qual está alugando.</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary upload-group" data-dismiss="modal" onclick="displayAluguelNotification()">Alugar</button>
-                <button type="button" class="btn btn-primary upload-group" data-dismiss="modal" onclick="displaySolicitarNotification()">Solicitar Contrato</button>
-              </div>
-            </div>
-          </div>
-        </div>
+                 <div class="modal-dialog" role="document">
+                   <div class="modal-content">
+                     <div class="modal-header">
+                       <h5 class="modal-title" id="exampleModalLabel">Aluguel de Chácara</h5>
+                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                       </button>
+                     </div>
+                     <div class="modal-body">
+                       <p>Selecione a data desejada:</p>
+                       <p class="dtParagraf">De:</p><span class="fa fa-calendar calendarIcon"></span><input type="date" name="dataInicio">
+                       <p class="dtParagraf">Até:</p><span class="fa fa-calendar calendarIcon"></span><input type="date" name="dataFinal">
+                       <p><span class="fa fa-exclamation-circle exclamationIcon"></span>Antes de seguir adiante e confirmar o aluguel da chácara tenha certeza de entrar em contato com o respectivo proprietário para tirar possivéis dúvidas que voçê tenha.</p>
+                       <p>Essa chácara não possui contrato online, caso deseje faça uma solicitação de contrato.</p>
+                       <p>Ao alugar uma chácara em nosso app voçê se compromete a seguir as normas de utilização de serviços, estando assim resposabilizado pela propriedade a qual está alugando.</p>
+                       <p>Apenas clique em "Alugar" caso tenha certeza de sua decisão e que já tenha entrado em contato com o propriétario da chácara.</p>
+                     </div>
+                     <div class="modal-footer">
+                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                       <button type="button" class="btn btn-primary upload-group" data-dismiss="modal" onclick="displayAluguelNotification()">Alugar</button>
+                       <button type="button" class="btn btn-primary upload-group" data-dismiss="modal" onclick="displaySolicitarNotification()">Solicitar Contrato</button>
+                     </div>
+                   </div>
+                 </div>
+               </div>
         <section id="secFAQ">
             <div class="container">
                 <div class="row secaoFAQ">
@@ -395,7 +419,7 @@
         <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
         <script src="js/app_firebase.js"></script>
         <script src="https://apis.google.com/js/platform.js" async defer></script>
-        <script src="js/my_script.min.js"></script>
+        <script src="js/my_script.js"></script>
         <script src="js/promisse.min.js"></script>
         <script src="js/fetch.min.js"></script>
         <script src="js/utility.min.js"></script>
